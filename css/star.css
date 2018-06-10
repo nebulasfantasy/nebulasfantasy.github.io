@@ -1,0 +1,30 @@
+.stars-container {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+  font-size:12pt;
+}
+
+.stars-container:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: lightgray;
+}
+
+.stars-container:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: #f7d40ffd;
+  overflow: hidden;
+}
+
+
+.stars-1:after { width: 20%; }
+.stars-2:after { width: 40%; }
+.stars-3:after { width: 60%; }
+.stars-4:after { width: 80%; }
+.stars-5:after { width: 100; }

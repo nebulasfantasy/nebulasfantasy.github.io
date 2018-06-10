@@ -1,0 +1,132 @@
+[
+    {
+        "id": 0,
+        "name": "Christiano Ronaldo",
+        "picture": "img/00.png"
+    },
+    {
+        "id": 1,
+        "name": "Andres Iniesta",
+        "picture": "img/01.png"
+    },
+    {
+        "id": 2,
+        "name": "Eden Hazard",
+        "picture": "img/02.png"
+    },
+    {
+        "id": 3,
+        "name": "Harry Kane",
+        "picture": "img/03.png"
+    },
+    {
+        "id": 4,
+        "name": "James Rodriguez",
+        "picture": "img/04.png"
+    },
+    {
+        "id": 5,
+        "name": "Manuel Neuer",
+        "picture": "img/05.png"
+    },
+    {
+        "id": 6,
+        "name": "Lionel Messi",
+        "picture": "img/06.png"
+    },
+    {
+        "id": 7,
+        "name": "Neymar Jr",
+        "picture": "img/07.png"
+    },
+    {
+        "id": 8,
+        "name": "Paul Pogba",
+        "picture": "img/08.png"
+    },
+    {
+        "id": 9,
+        "name": "Robert Lewandowski",
+        "picture": "img/09.png"
+    },
+    {
+        "id": 10,
+        "name": "Antoine Griezmann",
+        "picture": "img/10.png"
+    },
+    {
+        "id": 11,
+        "name": "David De Gea",
+        "picture": "img/11.png"
+    },
+    {
+        "id": 12,
+        "name": "David Silva",
+        "picture": "img/12.png"
+    },
+    {
+        "id": 13,
+        "name": "Edinson Cavani",
+        "picture": "img/13.png"
+    },
+    {
+        "id": 14,
+        "name": "Kevin De Bruyne",
+        "picture": "img/14.png"
+    },
+    {
+        "id": 15,
+        "name": "Luca Modric",
+        "picture": "img/15.png"
+    },
+    {
+        "id": 16,
+        "name": "Luis Suarez",
+        "picture": "img/16.png"
+    },
+    {
+        "id": 17,
+        "name": "Mesut Ozil",
+        "picture": "img/17.png"
+    },
+    {
+        "id": 18,
+        "name": "Mohamed Salah",
+        "picture": "img/18.png"
+    },
+    {
+        "id": 19,
+        "name": "Ousmane Dembele",
+        "picture": "img/19.png"
+    },
+    {
+        "id": 20,
+        "name": "Radamel Falcao",
+        "picture": "img/20.png"
+    },
+    {
+        "id": 21,
+        "name": "Romelu Lukaku",
+        "picture": "img/21.png"
+    },
+    {
+        "id": 22,
+        "name": "Sergio Aguero",
+        "picture": "img/22.png"
+    },
+    {
+        "id": 23,
+        "name": "Thiago Silva",
+        "picture": "img/23.png"
+    },
+    {
+        "id": 24,
+        "name": "Thomas Mueller",
+        "picture": "img/24.png"
+    },
+    {
+        "id": 25,
+        "name": "Toni Kroos",
+        "picture": "img/25.png"
+    }
+]

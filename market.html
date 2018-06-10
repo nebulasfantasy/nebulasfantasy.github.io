@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<title>Nebulas Fantasy</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/star.css" rel="stylesheet">
+<link href="css/NF.css" rel="stylesheet">
+<style>
+        img {
+            display:block;
+            margin:auto;
+        }
+        .sectionTitle {
+        font-weight: bold;
+        padding: 20px; 
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="w3-white w3-xlarge" style="max-width:1200px;">
+                <div class="w3-bar">
+                        <a href="./index.html" class="w3-bar-item w3-button w3-mobile">Home</a>
+                        <a href="./players.html" class="w3-bar-item w3-button w3-mobile">Portfolio</a>
+                        <a href="./market.html" class="w3-bar-item w3-button w3-mobile">Market</a>
+                        <a href="./about.html" class="w3-bar-item w3-button w3-mobile">About</a>
+                        <a href="" id="contractAddress" class="w3-bar-item w3-button w3-mobile">Contract</a>
+                        <a href="./ch/market.html" class="w3-bar-item w3-button w3-mobile" style="float:right">中文</a>
+                        <span class="w3-bar-item w3-mobile" id="pool" style="float:right"></span>
+                </div>
+        </div>
+
+        <header class="w3-display-container w3-content w3-wide" style="max-width:1600px;min-width:500px" id="home">
+            <img class="w3-image" src="./img/banner0.png">
+            <!-- <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+                <h1 class="w3-xxlarge">Le Catering</h1>
+            </div> -->
+        </header>
+
+
+
+        <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+            <h2 class="sectionTitle">Avatar Open Market</h2>
+
+            <div id="playersRow" class="row">
+            </div>
+
+
+            <div id="playersTemplate" style="display: none;">
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="panel panel-default panel-pet">
+                    <div class="panel-heading">
+                        <h3 id="name"></h3>
+                    </div>
+                    <div class="panel-body">
+                        <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;margin-bottom: 10px" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
+                        <br>
+                        <span style="text-align:center;margin:auto" id="price">price</span>
+                        <button class="btn btn-default" type="button" style="display:block;margin:auto">CLAIM ME</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Nebulas Transaction</h3>
+                    </div>
+                    <div class="modal-body" >
+                        <div>
+                            
+                            <h5 id="modal-status"></h5>
+                            <div id="modal-txresult">
+                                <h5> Talent: <span id="talent"  class="stars-container stars-5">★★★★★</span></h5>
+                            </div>
+                            <div class="loader" style="display:hide;margin:auto"></div>
+                            
+                        </div>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" id="confirm" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+                </div>
+        </div>
+
+
+  <!-- Pagination -->
+  <!-- <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
+      <a href="#" class="w3-bar-item w3-black w3-button">1</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
+      <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
+    </div>
+  </div> -->
+  
+    <footer class="w3-container w3-padding-64 w3-center w3-large"> 
+        <p>Powered by Nebulas Fantasy Team</p>
+        <p>nebulas.fantasy@gmail.com</p>
+    </footer>
+
+<!-- End page content -->
+</div>
+<script src=./lib/jquery-3.3.1.min.js></script>
+<script src= "bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src=../lib/nebpay.js></script>
+<script src=../lib/nebulas.js></script>
+<script src='address.js'></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+        var nebulas = require("nebulas"),
+        neb = new nebulas.Neb();
+        var NebPay = require("nebpay");
+        var nebPay = new NebPay();
+        var serialNumber;
+        Account = nebulas.Account;
+        var account;
+
+        var mainnetUrl = "https://pay.nebulas.io/api/mainnet/pay",
+        testnetUrl = "https://pay.nebulas.io/api/pay";
+
+        var ownerAddress;
+        var explorerTex, explorer, chainId, callbackUrl, NebHttpRequest;    
+
+
+
+        if(mainnet==false){ // test net
+            // const contractAddress =  require("address");//"n1wtjL3KMVNTV3gsWhJibnNMmr6HJHKwBW2";
+            ownerAddress = "n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX";
+            NebHttpRequest = "https://testnet.nebulas.io";
+            chainId = 1001;// test net
+            callbackUrl = testnetUrl;
+            explorerTx = "https://explorer.nebulas.io/#/testnet/tx/";
+            explorer = "https://explorer.nebulas.io/#/testnet/address/";
+        }else
+        {
+            // //main net 
+            ownerAddress = "n1bveJ8tkb1DDECgHvknRFZesJqeaL2iKNt";
+            NebHttpRequest = "https://mainnet.nebulas.io";
+            chainId = 1;// mainnet net
+            callbackUrl = mainnetUrl;
+            explorerTx = "https://explorer.nebulas.io/#/mainnet/tx/";
+            explorer = "https://explorer.nebulas.io/#/mainnet/address/";
+        }
+
+            neb.setRequest(new nebulas.HttpRequest(NebHttpRequest));
+            $("#contractAddress").attr('href', explorer + contractAddress).attr('target', "_blank");
+   
+
+
+
+
+                function claim(id){
+                        var testcontract;
+                        var callJSONs = {
+                            from: ownerAddress, // get address string
+                            to: contractAddress, // get the contract string
+                            value: "0",
+                            nonce: 0,
+                            gasPrice: "200000",
+                            gasLimit: "1000000",
+                            contract: testcontract
+                        }
+                        testcontract = { "function": "getPlayerMarketPrice", "args": "[" + id + "]" };
+                        callJSONs.contract = testcontract;
+                        neb.api.call(callJSONs)
+                        .then(function (resp){
+                            
+            
+                           var price = parseFloat(JSON.parse(resp.result));
+                           console.log("in buy, id=",id)
+                            var to = contractAddress;
+                            var value = price;// need to change
+                            // var callFunction = "mint";
+                            // var callArgs = "";
+                            var callFunction = "mintPlayerById";
+                            var callArgs = "[\"" + id + "\"]";
+                            serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+                                listener: mintListener,        //设置listener, 处理交易返回信息
+                            });
+                           
+                            }   
+                        )                  
+                }
+            
+
+                var txhash;
+
+                function mintListener(resp) {
+                    txhash = resp.txhash;
+                    spinOn();
+                    neb.api.getTransactionReceipt({
+                        hash: resp.txhash
+                    })
+                    .then(function (receipt) {
+                        console.log("receipt is:" + JSON.stringify(receipt))
+                        setQuery = setInterval(function () {
+                            setTxQuery();
+                        }, 10000);
+                    })
+                }
+
+                function setTxQuery() {
+                neb.api.getTransactionReceipt({
+                    hash: txhash
+                })
+                    .then(function (receipt) {
+                        console.log(receipt)
+                        if (receipt.status ==1){
+                            console.log("tx success")
+                            var result = JSON.parse(receipt.execute_result);
+                            console.log(result.playerId)
+                            clearInterval(setQuery);
+                            spinOff();
+                            $.getJSON('./players.json', function (data) {
+                                $("#modal-status").show().text("Congratulations! You just claimed " + data[result.playerId].name)
+                                $("#talent").attr('class',showStars(result.talent))
+                                $("#modal-txresult").show();
+                            });
+                            for(var i=0;i<26;i++){
+                                getCurrentPriceById(i); 
+                            }
+                            setTimeout(loadAllPlayers,1000);
+                        }
+
+                    if (receipt.status ==0){
+                            console.log("tx fail")
+                            clearInterval(setQuery);
+                            spinOff();
+                            $("#modal-status").show().text("Sorry, your transaction failed")
+                        }
+                        
+                    })
+                    .catch(function (err) {
+                        console.log("didn't get a receipt")
+                    })
+                }
+
+        var claim;
+        
+        function init(){
+            console.log("in the initial function");
+            for(var i=0;i<26;i++){
+                getCurrentPriceById(i); 
+            }
+            setTimeout(loadAllPlayers,1000);
+            getTotalPrize();
+        }
+        
+
+        var totalPlayer;
+        var temp = [];
+        var priceLocation;
+        function loadAllPlayers(){
+            $.getJSON('./players.json', function(data) {
+                    var playersRow = $('#playersRow');
+                    var playersTemplate = $('#playersTemplate');
+                    playersRow.empty();
+                    totalPlayer = data.length;
+                    for (var i = 0; i < data.length; i ++) {
+                        playersTemplate.find('#name').text(data[i].name);
+                        playersTemplate.find('img').attr('src', data[i].picture);
+                       playersTemplate.find('button').attr("id","Button"+i);
+                       playersTemplate.find('#price').text("price: "+playerPrice[i]+" NAS");
+                        playersRow.append(playersTemplate.html());
+                    }
+                    
+                    
+                    for(var i = 0;i<totalPlayer;i++){
+                        $('#Button'+i).click(function() {
+                            let temp = parseInt($(this).attr('id').substring(6));
+                            console.log("here! "+ temp);
+                            claim(temp);
+                        })
+                    }
+            });
+            
+        }
+
+ 
+        var playerPrice=[];
+        function getCurrentPriceById(id){
+                var testcontract;
+                var callJSONs = {
+                    from: ownerAddress, // get address string
+                    to: contractAddress, // get the contract string
+                    value: "0",
+                    nonce: 0,
+                    gasPrice: "200000",
+                    gasLimit: "1000000",
+                    contract: testcontract
+                }
+                testcontract = { "function": "getPlayerMarketPrice", "args": "[" + id + "]" };
+                callJSONs.contract = testcontract;
+                neb.api.call(callJSONs)
+                .then(function (resp){
+                     console.log(parseFloat(JSON.parse(resp.result)))
+    
+                    playerPrice[id]=parseFloat(JSON.parse(resp.result));
+                    // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
+                    }   
+                )
+        }
+           
+
+
+
+
+        // check the prize pool
+        function getTotalPrize() {
+                var testcontract;
+                var callJSONs = {
+                    from: ownerAddress, // get address string
+                    to: contractAddress, // get the contract string
+                    value: "0",
+                    nonce: 0,
+                    gasPrice: "200000",
+                    gasLimit: "1000000",
+                    contract: testcontract
+                }
+
+                // get the token Id owned by the address
+                testcontract = { "function": "getPrizePool", "args": "" };
+                callJSONs.contract = testcontract;
+                neb.api.call(callJSONs)
+                .then(function (resp){
+                    // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
+                    $("#pool").show().text(String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS in pool");
+                    }   
+                )
+        };
+
+         function spinOn() {
+            $("#myModal").modal();
+            $("#modal-status").show().text("Please wait for your transaction to be completed")
+            $(".loader").css("display","block");
+            $("#confirm").hide();
+            $("#modal-txresult").hide();
+            $("#modal").show();
+        }
+
+        function spinOff() {
+            $(".loader").css("display","none");
+            $("#confirm").show();
+        }
+
+      function showStars(number){
+            return "stars-container stars-"+number;
+        }
+
+
+        
+        $(window).load(function () {
+            // executes when complete page is fully loaded, including all frames, objects and images
+                // window.postMessage({
+                // "target": "contentscript",
+                // "data":{},
+                // "method": "getAccount",
+                // }, "*");
+     
+                // window.addEventListener('message', function(e) {
+                //     if(!!e.data.data.account){
+                //         account = e.data.data.account;
+                //         console.log(account)
+                        
+                //     } // console.log(account)
+                //     // else{
+                //     //     alert('please load your NAS wallet')
+                //     // }
+                // });  
+                
+                init();    
+        });
+    </script>
+
+</body>
+</html>
