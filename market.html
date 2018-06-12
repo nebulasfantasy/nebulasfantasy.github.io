@@ -29,7 +29,7 @@
                         <a href="./about.html" class="w3-bar-item w3-button w3-mobile">About</a>
                         <a href="" id="contractAddress" class="w3-bar-item w3-button w3-mobile">Contract</a>
                         <a href="./ch/market.html" class="w3-bar-item w3-button w3-mobile" style="float:right">中文</a>
-                        <span class="w3-bar-item w3-mobile" id="pool" style="float:right"></span>
+                        <!-- <span class="w3-bar-item w3-mobile" id="pool" style="float:right"></span> -->
                 </div>
         </div>
 
@@ -40,6 +40,20 @@
             </div> -->
         </header>
 
+
+        <div class="infobar">
+                <div class="row">
+                    <div class="column3">
+                            <span class="infobaritems">Network: <span id="network"></span></span> 
+                    </div>
+                    <div class="column3"> 
+                            <span class="infobaritems">Prize Pool: <span id="pool"></span></span> 
+                    </div>
+                    <div class="column3">
+                            <span class="infobaritems"># of Avatars: <span id="amountAvatars"></span></span> 
+                    </div>
+                </div>
+        </div>
 
 
         <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
@@ -254,7 +268,9 @@
                 getCurrentPriceById(i); 
             }
             setTimeout(loadAllPlayers,1000);
-            getTotalPrize();
+            window.addEventListener('message', networkUpdate); 
+            updateStatus();
+            setInterval(updateStatus,10000);
         }
         
 
@@ -312,33 +328,6 @@
                 )
         }
            
-
-
-
-
-        // check the prize pool
-        function getTotalPrize() {
-                var testcontract;
-                var callJSONs = {
-                    from: ownerAddress, // get address string
-                    to: contractAddress, // get the contract string
-                    value: "0",
-                    nonce: 0,
-                    gasPrice: "200000",
-                    gasLimit: "1000000",
-                    contract: testcontract
-                }
-
-                // get the token Id owned by the address
-                testcontract = { "function": "getPrizePool", "args": "" };
-                callJSONs.contract = testcontract;
-                neb.api.call(callJSONs)
-                .then(function (resp){
-                    // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
-                    $("#pool").show().text(String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS in pool");
-                    }   
-                )
-        };
 
          function spinOn() {
             $("#myModal").modal();

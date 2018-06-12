@@ -25,7 +25,7 @@
                         <a href="./about.html"  class="w3-bar-item w3-button w3-mobile">介绍</a>
                         <a href="" id="contractAddress" class="w3-bar-item w3-button w3-mobile">合约</a>
                         <a href="../players.html" class="w3-bar-item w3-button w3-mobile" style="float:right">English</a>
-                        <span class="w3-bar-item w3-mobile" id="pool" style="float:right"></span>
+                        <!-- <span class="w3-bar-item w3-mobile" id="pool" style="float:right"></span> -->
                 </div>
         </div>
 
@@ -36,21 +36,37 @@
                 <h1 class="w3-xxlarge">Le Catering</h1>
             </div> -->
             
-            <div class="form-group" style="display:inline-flex; float:right;width: 500px; margin:30px 30px; margin-left:auto; margin-right:auto">
-                    
-                    <input class="form-control" type="text" id="address" placeholder="your NAS address">
-                    <br>
-                    <button id="check" class="btn btn-primary" onClick="check()" style="display: inline-block;">CHECK</button>
-                    <br> 
-            </div>
+
            
         </header>
+
+        <div class="infobar">
+                <div class="row">
+                    <div class="column3">
+                            <span class="infobaritems">Network: <span id="network"></span></span> 
+                    </div>
+                    <div class="column3"> 
+                            <span class="infobaritems">Prize Pool: <span id="pool"></span></span> 
+                    </div>
+                    <div class="column3">
+                            <span class="infobaritems"># of Avatars: <span id="amountAvatars"></span></span> 
+                    </div>
+                </div>
+        </div>
+
+        <div class="form-group" style="display:inline-flex; float:right;width: 500px; margin:30px 30px; margin-left:auto; margin-right:auto">
+                    
+                <input class="form-control" type="text" id="address" placeholder="your NAS address">
+                <br>
+                <button id="check" class="btn btn-primary" onClick="check()" style="display: inline-block;">CHECK</button>
+                <br> 
+        </div>
 
 
 
         <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
                 <div> <h3 id="title"></h3> </div>
-                <div> <h4 id="noplayer" style="display:none">check your address again, or claim an avatar first</h4> </div>
+                <div> <h4 id="noplayer" style="display:none">请先去认领一个球员</h4> </div>
                 <div id="playersRow" class="row">
                     <!-- PETS LOAD HERE -->
             </div>
@@ -180,6 +196,9 @@
                 loadPlayersByUser(account);
                 getTotalPrize();
             }
+            window.addEventListener('message', networkUpdate); 
+            updateStatus();
+            setInterval(updateStatus,10000);
         }
 
 
@@ -207,7 +226,7 @@
                     function (resp) {
                         tokenIds = JSON.parse(resp.result);
                         console.log(tokenIds);
-                        $("#title").show().text("找到了你拥有的"+tokenIds.length +"球员");
+                        $("#title").show().text("找到了你拥有的"+tokenIds.length +"个球员");
                         if (tokenIds.length==0){
                             $("#noplayer").show();
                         }
