@@ -211,8 +211,10 @@ Players.prototype = {
         //check the current token price
         // var number = new BigNumber(this.totalTokens)
         // this.drawPrice = new BigNumber(0.1*(parseInt(temp/50)+1)); // old one
+
+        // update the contract
         var bn = Math.ceil(this.totalTokens/50);
-        var drawPrice = new BigNumber(bn).mul(0.1);
+        this.drawPrice = new BigNumber(bn).mul(0.1);
 
         return {"playerId":playerId,"talent":this.playerTalent.get(this.totalTokens-1)};
     },
