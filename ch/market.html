@@ -265,15 +265,22 @@
         function init(){
             console.log("in the initial function");
             for(var i=0;i<26;i++){
-                getCurrentPriceById(i); 
-            }
+                    getCurrentPriceById(i); 
+                }
+
+            var query = setInterval(function(){
+                var isPlayerPriceFound = checkPlayerPrice();
+                console.log(isPlayerPriceFound);
+                if (isPlayerPriceFound == true) {
+                    loadAllPlayers();
+                    clearInterval(query);
+                }
+            },1000)
+            
+            
             window.addEventListener('message', networkUpdate); 
             updateStatus();
             setInterval(updateStatus,10000);
-            setTimeout(loadAllPlayers,2000);
-
-  
-         
         }
         
 
@@ -332,7 +339,17 @@
         }
            
 
-
+       function checkPlayerPrice(){
+            var result = true;
+            $.getJSON('./players.json', function(data) {
+                for(var i=0; i<=data.length;i++){
+                    if(playerPrice[i]==undefined){
+                        result = false;
+                    }
+                }
+            })   
+            return result;
+        }
 
 
       
