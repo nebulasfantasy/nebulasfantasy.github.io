@@ -45,3 +45,9 @@ body,
         padding-right:100px;
         font-size:14pt;
     }
+
+    @media screen and (max-width: 700px) {
+        .w3-bar-item, .infobaritems {
+          font-size: 10px;
+        }
+      }
