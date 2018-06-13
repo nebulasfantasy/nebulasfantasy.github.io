@@ -14,7 +14,7 @@ const mainnet = true;
 
 
 
-const AmountOfplayers = 26;
+const AmountOfplayers = 27;
 
 // common function
 

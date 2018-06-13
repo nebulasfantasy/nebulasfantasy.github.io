@@ -128,5 +128,10 @@
         "id": 25,
         "name": "Toni Kroos",
         "picture": "img/25.png"
+    },
+    {
+        "id": 26,
+        "name": "Marco Reus",
+        "picture": "img/26.png"
     }
 ]

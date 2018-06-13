@@ -345,13 +345,12 @@
 
         function checkPlayerPrice(){
             var result = true;
-            $.getJSON('./players.json', function(data) {
-                for(var i=0; i<=data.length;i++){
-                    if(playerPrice[i]==undefined){
-                        result = false;
-                    }
+            for(var i=0; i<AmountOfplayers;i++){
+                if(playerPrice[i]==undefined){
+                    // console.log("undefined playe price: "+ i);
+                    result = false;
                 }
-            })   
+            }
             return result;
         }
 
