@@ -38,7 +38,6 @@ var Players = function () {
         "playerGoal":null,
         "playerTime":null,
         "playerTalent":null,
-        "playerAmountByMarket":null,
         "playerPrice":{
             parse: function (value) {
                 return new BigNumber(value);
@@ -70,7 +69,7 @@ var Players = function () {
 Players.prototype = {
     init: function () {
         this.owner = Blockchain.transaction.from;
-        this.totalTokens = 128;
+        this.totalTokens = 0;
         this.totalAuctions = 0;
         this.totalPlayers = 26; // this is how manu unique players that we create, need to be able to modifiy
         this._name ="Players";
@@ -352,7 +351,14 @@ Players.prototype = {
         if(Blockchain.transaction.from!==this.owner){
             throw new Error("you are not game owner")
         }
-        this.totalPlayers = this.totalPlayers + addition;
+        
+
+        // initialze new player price
+        for (var i=0;i<addition;i++){
+            this.playerPrice.set((this.totalPlayers+i),new BigNumber(0.2))
+        }
+        this.totalPlayers = this.totalPlayers + addition;   
+
     },
 
     // return an array of tokensIDs by PlayerId;
@@ -672,9 +678,9 @@ Players.prototype = {
     _addTokenTo: function(_to, _tokenId) {
         this.tokenOwner.set(_tokenId, _to);
         if (this.ownedTokensCount.get(_to)==null){
-            var tokenCount = 0
+            var tokenCount = 0;
         }else{
-            var tokenCount = this.ownedTokensCount.get(_to) ;
+            var tokenCount = this.ownedTokensCount.get(_to);
         }
         this.ownedTokensCount.set(_to, tokenCount+1);
     },
@@ -700,6 +706,40 @@ Players.prototype = {
             }
         });
     },
+
+
+    dataTransfer:function(input){
+        // check the ownership
+        var from = Blockchain.transaction.from;
+        if (from !== this.owner){
+            throw new Error("you are not game owner")
+        }
+        var data = JSON.parse(input);
+      
+       // data is an array of token info object
+        for(var i=0;i<data.length;i++){
+           // transfer a token data
+           this.playerId.set(this.totalTokens,data[i].p);// playerId
+           this.playerWin.set(this.totalTokens,0);  
+           this.playerGoal.set(this.totalTokens,0); 
+           this.playerTime.set(this.totalTokens,0);        
+           this.playerTalent.set(this.totalTokens,data[i].t); // talent  
+           this._addTokenTo(data[i].a,this.totalTokens);
+           this.totalTokens = this.totalTokens+1;
+        
+           var price = this.playerPrice.get(data[i].p);
+           this.playerPrice.set(data[i].p,price.plus(0.02));
+        }
+
+        return {"playerId":data[0].p,"owner":data[0].a,"talent":data[0].t}
+    },
+
+
+    donate:function(){
+        // transfer prize information information
+        var value = Blockchain.transaction.value;
+        this.prizePool = this.prizePool.plus(value);
+    }
 
 };
 

@@ -147,7 +147,6 @@
         var explorerTex, explorer, chainId, callbackUrl, NebHttpRequest;    
 
 
-
         if(mainnet==false){ // test net
             // const contractAddress =  require("address");//"n1wtjL3KMVNTV3gsWhJibnNMmr6HJHKwBW2";
             ownerAddress = "n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX";
@@ -241,7 +240,7 @@
                                 $("#talent").attr('class',showStars(result.talent))
                                 $("#modal-txresult").show();
                             });
-                            for(var i=0;i<26;i++){
+                            for(var i=0;i<AmountOfplayers;i++){
                                 getCurrentPriceById(i); 
                             }
                             setTimeout(loadAllPlayers,2000);
@@ -264,7 +263,7 @@
         
         function init(){
             console.log("in the initial function");
-            for(var i=0;i<26;i++){
+            for(var i=0;i<AmountOfplayers;i++){
                     getCurrentPriceById(i); 
                 }
 

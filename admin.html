@@ -74,6 +74,13 @@
                         <button type="button" class="btn btn-primary" onClick="stop()"> Stop Token Distribution</button>
                         <button type="button" class="btn btn-primary" onClick="distributeReward()"> Distribute Reward</button>
                     </div>
+
+
+                    <div class="form-row" style="margin-top:30px"></div>
+                        <label >new player #</label>
+                        <input type="text" class="form-control" id="newplayer" placeholder="new players">
+                    </div>
+                    <button type="button" class="btn btn-primary" onClick="addMewPlayer()">New Player</button>
             </form>
 
 
@@ -181,6 +188,18 @@
             serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
                 listener: updateListener,        //设置listener, 处理交易返回信息
             });
+        }
+
+        function addMewPlayer(){
+            var number = $('#newplayer').val().trim();
+            var to = contractAddress;
+            var value = 0;// need to change
+            var callFunction = "increasePlayersNumber";
+            var callArgs = "["+number+"]";
+            serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+                listener: updateListener,        //设置listener, 处理交易返回信息
+            });
+
         }
 
 

@@ -146,7 +146,7 @@
         var ownerAddress;
         var explorerTex, explorer, chainId, callbackUrl, NebHttpRequest;    
 
-
+       
 
         if(mainnet==false){ // test net
             // const contractAddress =  require("address");//"n1wtjL3KMVNTV3gsWhJibnNMmr6HJHKwBW2";
@@ -241,7 +241,7 @@
                                 $("#talent").attr('class',showStars(result.talent))
                                 $("#modal-txresult").show();
                             });
-                            for(var i=0;i<26;i++){
+                            for(var i=0;i<AmountOfplayers;i++){
                                 getCurrentPriceById(i); 
                             }
                             setTimeout(loadAllPlayers,1000);
@@ -264,7 +264,7 @@
         
         function init(){
             console.log("in the initial function");
-            for(var i=0;i<26;i++){
+            for(var i=0;i<AmountOfplayers;i++){
                     getCurrentPriceById(i); 
                 }
 
@@ -280,7 +280,7 @@
             
             window.addEventListener('message', networkUpdate); 
             updateStatus();
-            setInterval(updateStatus,10000);
+            setInterval(updateStatus,5000);
         }
         
 

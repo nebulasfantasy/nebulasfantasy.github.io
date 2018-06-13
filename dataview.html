@@ -34,52 +34,9 @@
             <img class="w3-image" src="./img/banner0.png">
         </header>
 
-
-        <div class="w3-container w3-padding-32" id="addresses">
-            <div style="margin:20px; ">
-            <br><br>
-            <h3>Load your data</h3>
-            <div>
-                <form>
-                    <div class="form-row">
-                        <div class="col">
-                            <label style="font-weight:bold">Step 1: </label><br>
-                            <label style="font-weight:bold">Load your transfer data in a csv file </label><br>
-                            <br>
-                            <input type="file" name="filename" id="filename" style="text-align: center">
-                            <button id="upload" type="button" onClick="uploads()">upload</button>
-                        </div>
-                        <div class="col">
-                            <label style="font-weight:bold">Step 2: </label><br>
-                            <label style="font-weight:bold"> update</label>
-                            <br>
-                            <input type="text" id="start" placeholder="0" style="margin-bottom: 10px"> items <br>  
-                            <input type="text" id="end" placeholder="0" style="margin-bottom: 10px"> items <br>                        
-                            <button type="button" id="button1" onClick="update()">Update</button><br>
-                            <i class="fa fa-hide"></i>
-                            <p><span style="color:brown;" id="txstatus"></span> <a id="txonexplorer"> </a></p>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <button type="button" id="donate" onClick="donate()">DONATE</button><br>
-            <div>
-                <table class="table table-striped table-hover" id="here_table" style="margin-top:50px"> 
-                    <div><p><span style="color:brown;" id="csvLoad"></span></p></div>
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col"> Nebulas Address</th>
-                            <th scope="col"> Verified?</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tbody">
-                    </tbody>
-                </table>
-            </div>
-        </div>
+       
         
-<!-- 
+
         <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
 
             <form>
@@ -108,12 +65,12 @@
                         <button type="button" class="btn btn-primary" onClick="stop()"> Stop Token Distribution</button>
                         <button type="button" class="btn btn-primary" onClick="distributeReward()"> Distribute Reward</button>
                     </div>
-            </form> -->
+            </form>
 
 
 
 
-            <!-- <br>
+            <br>
             <div><span id="totalTokens"></span></div>
             <table class="table table-striped table-hover" id="here_table" style="margin:30px"> 
                 <thead>
@@ -132,7 +89,7 @@
                 <tbody id="tbody">
                 </tbody>
             </table>
-        </div> -->
+        </div>
 
         <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
             <p>Powered by Nebulas Fantasy Team</p>
@@ -187,119 +144,51 @@
 
 
 
-        var csvResult;
-        var gData = [];
-        function uploads(){
-            // $("#txstatus").val(); 
-                console.log("in upload()")
-                var csv = $('#filename');
-                var csvFile = csv[0].files[0];
-                var ext = csv.val().split(".").pop().toLowerCase();
-                if($.inArray(ext, ["csv"]) === -1){
-                    alert('not CSV file');
-                    return false;
-                }
-                if(csvFile != undefined){
-                    reader = new FileReader();
-                    reader.onload = function(e){
-                        $("#csvLoad").text(""); 
-                        csvResult = e.target.result.split(/\r|\n|\r/);
-                       // remove all the empty result
-                       for (var i = 0; i < csvResult.length; i++) {
-                            if (csvResult[i] == "") {         
-                                csvResult.splice(i, 1);
-                                i--;
-                            }
-                        }
 
-
-                        // if(csvResult.length>15){
-                        //     alert("Sorry, the max addresses you can load is 15!")
-                        //     return;
-                        // }
-                        // showAddress(csvResult);
-                        
-
-                        for(var k=1;k<csvResult.length;k++){// start from k =1 to remove header
-                                //token Id	player Id	owner	talent
-                                var temp = csvResult[k].split(/,/); // retun an array
-                                var token = {"p":temp[1],"a":temp[2],"t":temp[3]};
-                                gData.push(token);
-                        }
-
-                       console.log("find "+ csvResult.length+"items")
-                        console.log(gData);
-                    }
-                    reader.readAsText(csvFile);
-                }
-        }
-
-
-
-            function donate(){
-                var to = contractAddress;
+        function distributeReward(){
+            var to = contractAddress;
             var value = 0;// need to change
-            var callFunction = "donate";
-
-            var callArgs = ""
-
-            console.log(callArgs);
-            // console.log(StringigyArray(0,1)) 
+            var callFunction = "reward";
+            var callArgs = "";
             serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
                 listener: updateListener,        //设置listener, 处理交易返回信息
             });
-
-            }
-
-
-        function StringifyItem(i){
-            // out put a JSON object in string
-            var argstr ="{";
-            argstr = argstr+"\\\"a\\\":\\\""+gData[i].a+"\\\",\\\"t\\\":"+gData[i].t+",\\\"p\\\":"+gData[i].p;
-            argstr = argstr+"}";
-            console.log(argstr)
-            return argstr;
         }
-      
-   
-        function StringigyArray(start,end){
-            var arg="[";
-            for(var i=start;i<end;i++){
-                if (i!=(end-1)){
-                    arg=arg+StringifyItem(i)+",";
-                }
-                else{
-                    arg=arg+StringifyItem(i); 
-                }
-                
-            }
-            arg = arg+"]"
-            console.log(arg)
-            return arg;
-            
-        }
-       // correct way to type in the web-wallet ["[{\"a\":\"n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX\",\"t\":1,\"p\":1}]"]
-        function update() {
-            var start = $("#start").val().trim(); 
-            var end = $("#end").val().trim(); 
 
+
+        function stop(){
             var to = contractAddress;
             var value = 0;// need to change
-            var callFunction = "dataTransfer";
+            var callFunction = "isClaimable";
+            var callArgs = "["+false+"]";
+            serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+                listener: updateListener,        //设置listener, 处理交易返回信息
+            });
+        }
 
-            console.log(start);
-            console.log(end);
-            // load one item
-            var callArgs = "[\""+StringigyArray(start,end)+"\"]"
-          //  console.log(temp)   
-// ["[{\"a\":\"n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX\",\"t\":1,\"p\":1},{\"a\":\"n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX\",\"t\":1,\"p\":1},{\"a\":\"n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX\",\"t\":1,\"p\":1}]"]
+        function moveon(){
+            var to = contractAddress;
+            var value = 0;// need to change
+            var callFunction = "isClaimable";
+            var callArgs = "["+true+"]";
+            serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+                listener: updateListener,        //设置listener, 处理交易返回信息
+            });
+        }
 
-            // var callArgs = "[\""+StringigyArray(0,1)+"\"]"
-            // console.log(callArgs);
-          //  var callArgs = "[\"[{\\\"a\\\":\\\"n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX\\\",\\\"t\\\":1,\\\"p\\\":1}]\"]";
-            //var callArgs = "[\""+"[{\\\"a\\\":\\\"n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX\\\",\\\"t\\\":\"1\",\\\"p\\\":\"1\"}]"+"\"]";
-            console.log(callArgs);
-            // console.log(StringigyArray(0,1)) 
+
+
+        function update() {
+
+            var id = $('#playerid').val().trim();
+            var win = $('#playerwin').val().trim();
+            var goal = $('#playergoal').val().trim();
+            var min = $('#playertime').val().trim();
+            
+            var to = contractAddress;
+            var value = 0;// need to change
+            var callFunction = "updatePlayerStatus";
+            var callArgs = "[\"" + id + "\"," + "\""+min +"\"," + "\""+win+"\"," + "\""+goal+"\"]"
             serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
                 listener: updateListener,        //设置listener, 处理交易返回信息
             });
@@ -329,11 +218,11 @@
                         if (receipt.status ==1){
                             console.log("tx success")
                             clearInterval(setQuery);
+                            getTotalToken();
                         }
 
                     if (receipt.status ==0){
                             console.log("tx fail")
-                            console.log(receipt.execution_error);
                             clearInterval(setQuery);
                         }
                         
@@ -349,14 +238,112 @@
 
 
 
+    var database;
+    function init(){
+        console.log("in the initial function");
+        getTotalPrize();
+        $.getJSON('./players.json', function (data) {
+            database = data;
+
+        }).then(
+            function (){
+                getTotalToken();
+            }
+        )  
+    }
 
 
-   
+    function getTotalToken(){
+            var testcontract;
+            var callJSONs = {
+                from: ownerAddress, // get address string
+                to: contractAddress, // get the contract string
+                value: "0",
+                nonce: 0,
+                gasPrice: "200000",
+                gasLimit: "1000000",
+                contract: testcontract
+            }
+            // get the token Id owned by the address
+            testcontract = { "function": "getTotalTokens", "args": "" };
+            callJSONs.contract = testcontract;
+            neb.api.call(callJSONs).
+            then(function (resp){
+                $("#totalTokens").show().text("Total tokens:  " + resp.result);
+                return resp.result; 
+              } 
+            ).then(function(resp){
+                var N = resp; 
+                var IDs = [];
+                for(var i=0;i<N;i++){
+                    IDs.push(i);
+                }
+                console.log(IDs);        
+                getTokenInfoByIds(IDs)
+            })
+    }
 
 
+
+            function getTokenInfoByIds(tokenIds){
+                        var testcontract;
+                        var callJSONs = {
+                            from: ownerAddress, // get address string
+                            to: contractAddress, // get the contract string
+                            value: "0",
+                            nonce: 0,
+                            gasPrice: "200000",
+                            gasLimit: "1000000",
+                            contract: { "function": "getPlayersInfoByTokenId", "args": "[\"" + JSON.stringify(tokenIds) + "\"]" }
+                        }
+                    
+                    neb.api.call(callJSONs).then(function (resp) {
+                        playerInfo = JSON.parse(resp.result);   
+                        console.log(playerInfo);     
+                        $("#tbody").empty();
+                        for (var i=0;i<playerInfo.length;i++){
+                            $('#here_table').append('<tr><th scope="row">'+i+'</th>'+'<td>'+playerInfo[i].id+'</td>'
+                                +'<td>'+database[playerInfo[i].id].name +'</td>'
+                                +'<td>'+playerInfo[i].owner +'</td>'
+                                +'<td>'+getPoints(playerInfo[i]) +'</td>'
+                                +'<td>'+playerInfo[i].talent +'</td>'
+                                +'<td>'+playerInfo[i].time +'</td>'
+                                +'<td>'+playerInfo[i].win +'</td>'
+                                +'<td>'+playerInfo[i].goal +'</td>'+'</tr>');
+                        }
+                    })
+            }
 
                   
+                       
+        function getPoints(player){
+            return player.time*player.talent+player.goal*300+player.win*100;
+        }                
+        
 
+// check the prize pool
+        function getTotalPrize() {
+                        var testcontract;
+                        var callJSONs = {
+                            from: ownerAddress, // get address string
+                            to: contractAddress, // get the contract string
+                            value: "0",
+                            nonce: 0,
+                            gasPrice: "200000",
+                            gasLimit: "1000000",
+                            contract: testcontract
+                        }
+
+                        // get the token Id owned by the address
+                        testcontract = { "function": "getPrizePool", "args": "" };
+                        callJSONs.contract = testcontract;
+                        neb.api.call(callJSONs)
+                        .then(function (resp){
+                            // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
+                            $("#pool").show().text(String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS in pool");
+                            }   
+                        )
+                };
 
         
         $(window).load(function () {
@@ -374,7 +361,7 @@
                 //     // console.log(account)
                 // });  
                 
-           
+                init();
         });
     </script>
 
