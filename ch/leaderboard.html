@@ -10,98 +10,105 @@
 <link href="../css/NF.css" rel="stylesheet">
 <link href="../css/star.css" rel="stylesheet">
 <style>
-        img {
-            display:block;
-            margin:auto;
-        }
+    img {
+        display: block;
+        margin: auto;
+    }
 </style>
+
 <body>
 
- 
-        <div class="container">
-                <div class="w3-white w3-xlarge" style="max-width:1200px;">
-                        <div class="w3-bar">
-                                <a href="./index.html" class="w3-bar-item w3-button">主页</a>
-                                <a href="./players.html" class="w3-bar-item w3-button">我的球员</a>
-                                <a href="./market.html" class="w3-bar-item w3-button">市场</a>
-                                <a href="./leaderboard.html"  class="w3-bar-item w3-button">积分榜</a>
-                                <a href="./about.html"  class="w3-bar-item w3-button">介绍</a>
-                                <a href="" id="contractAddress" class="w3-bar-item w3-button">合约</a>
-                                <a href="../leaderboard.html" class="w3-bar-item w3-button" style="float:right">English</a>
-                                <!-- <span class="w3-bar-item" id="pool" style="float:right"></span> -->
-                        </div>
-                </div>
-        
-                <header class="w3-display-container w3-content w3-wide" style="max-width:1600px" id="home">
-        
-                    <img class="w3-image" src="../img/banner0.png">
-                    <!-- <div class="w3-display-bottomleft w3-padding-large w3-opacity">
+
+    <div class="container">
+        <div class="w3-white w3-xlarge" style="max-width:1200px;">
+            <div class="w3-bar">
+                <a href="./index.html" class="w3-bar-item w3-button">主页</a>
+                <a href="./players.html" class="w3-bar-item w3-button">我的球员</a>
+                <a href="./market.html" class="w3-bar-item w3-button">购买球星</a>
+                <a href="./leaderboard.html" class="w3-bar-item w3-button">积分榜</a>
+                <a href="./about.html" class="w3-bar-item w3-button">介绍</a>
+                <a href="" id="contractAddress" class="w3-bar-item w3-button">合约</a>
+                <a href="../leaderboard.html" class="w3-bar-item w3-button" style="float:right">English</a>
+                <!-- <span class="w3-bar-item" id="pool" style="float:right"></span> -->
+            </div>
+        </div>
+
+        <header class="w3-display-container w3-content w3-wide" style="max-width:1600px" id="home">
+
+            <img class="w3-image" src="../img/banner0.png">
+            <!-- <div class="w3-display-bottomleft w3-padding-large w3-opacity">
                         <h1 class="w3-xxlarge">Le Catering</h1>
                     </div> -->
-                    
-        
-                   
-                </header>
-        
-                <div class="infobar">
-                    <div class="row">
-                        <div class="col-sm-4">
-                                <span class="infobaritems">Network: <span id="network"></span></span> 
-                        </div>
-                        <div class="col-sm-4"> 
-                                <span class="infobaritems">Prize Pool: <span id="pool"></span></span> 
-                        </div>
-                        <div class="col-sm-4">
-                                <span class="infobaritems"># of Avatars: <span id="amountAvatars"></span></span> 
-                        </div>
-                    </div>
+
+
+
+        </header>
+
+        <div class="infobar">
+            <div class="row">
+                <div class="col-sm-4">
+                    <span class="infobaritems">网络状况:
+                        <span id="network"></span>
+                    </span>
                 </div>
-
-
-
-
-            <br>
-            <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-                    <h2 class="sectionTitle">奖池领先者</h2>
-                    <h4>积分相同情况下先购买者优先</h4>
-                    <table class="table table-striped table-hover" id="here_table"> 
-                        <thead>
-                            <tr>
-                                <th scope="col"> ID</th>
-                                <th scope="col">球员</th>
-                                <th scope="col"> 持有者地址</th>
-                                <th scope="col"> 得分</th>
-                                <th scope="col"> 天赋</th>
-                                <th scope="col"> 上场时间</th>
-                                <th scope="col"> 赢球数</th>
-                                <th scope="col"> 进球数</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody">
-                        </tbody>
-                    </table>
+                <div class="col-sm-4">
+                    <span class="infobaritems">奖池大小:
+                        <span id="pool"></span>
+                    </span>
+                </div>
+                <div class="col-sm-4">
+                    <span class="infobaritems">球星卡总数:
+                        <span id="amountAvatars"></span>
+                    </span>
+                </div>
             </div>
-        
+        </div>
 
-        <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large"> 
+
+
+
+        <br>
+        <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
+            <h2 class="sectionTitle">奖池领先者</h2>
+            <h4>积分相同情况下先购买者优先</h4>
+            <table class="table table-striped table-hover" id="here_table">
+                <thead>
+                    <tr>
+                        <th scope="col"> ID</th>
+                        <th scope="col"> 球员</th>
+                        <th scope="col"> 持有者地址</th>
+                        <th scope="col"> 得分</th>
+                        <th scope="col"> 天赋</th>
+                        <th scope="col"> 上场时间</th>
+                        <th scope="col"> 赢球数</th>
+                        <th scope="col"> 进球数</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+
+
+        <footer class="w3-container w3-padding-64 w3-light-grey w3-center w3-large">
             <p>Powered by Nebulas Fantasy Team</p>
             <p>nebulas.fantasy@gmail.com</p>
         </footer>
-    
+
     </div>
 
-<!-- End page content -->
-</div>
-<script src=../lib/jquery-3.3.1.min.js></script>
-<script src= "../bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src=../lib/nebpay.js></script>
-<script src=../lib/nebulas.js></script>
-<script src='../address.js'></script>
+    <!-- End page content -->
+    </div>
+    <script src=../lib/jquery-3.3.1.min.js></script>
+    <script src="../bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src=../lib/nebpay.js></script>
+    <script src=../lib/nebulas.js></script>
+    <script src='../address.js'></script>
 
-<script>
+    <script>
         var nebulas = require("nebulas"),
-        neb = new nebulas.Neb();
+            neb = new nebulas.Neb();
         var NebPay = require("nebpay");
         var nebPay = new NebPay();
         var serialNumber;
@@ -109,32 +116,31 @@
         var account;
 
         var mainnetUrl = "https://pay.nebulas.io/api/mainnet/pay",
-        testnetUrl = "https://pay.nebulas.io/api/pay";
+            testnetUrl = "https://pay.nebulas.io/api/pay";
 
         var ownerAddress;
-        var explorerTex, explorer, chainId, callbackUrl, NebHttpRequest;    
+        var explorerTex, explorer, chainId, callbackUrl, NebHttpRequest;
 
-        if(mainnet==false){ // test net
+        if (mainnet == false) { // test net
             // const contractAddress =  require("address");//"n1wtjL3KMVNTV3gsWhJibnNMmr6HJHKwBW2";
             ownerAddress = "n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX";
             NebHttpRequest = "https://testnet.nebulas.io";
-            chainId = 1001;// test net
+            chainId = 1001; // test net
             callbackUrl = testnetUrl;
             explorerTx = "https://explorer.nebulas.io/#/testnet/tx/";
             explorer = "https://explorer.nebulas.io/#/testnet/address/";
-        }else
-        {
+        } else {
             // //main net 
             ownerAddress = "n1bveJ8tkb1DDECgHvknRFZesJqeaL2iKNt";
             NebHttpRequest = "https://mainnet.nebulas.io";
-            chainId = 1;// mainnet net
+            chainId = 1; // mainnet net
             callbackUrl = mainnetUrl;
             explorerTx = "https://explorer.nebulas.io/#/mainnet/tx/";
             explorer = "https://explorer.nebulas.io/#/mainnet/address/";
         }
 
-            neb.setRequest(new nebulas.HttpRequest(NebHttpRequest));
-            $("#contractAddress").attr('href', explorer + contractAddress).attr('target', "_blank");
+        neb.setRequest(new nebulas.HttpRequest(NebHttpRequest));
+        $("#contractAddress").attr('href', explorer + contractAddress).attr('target', "_blank");
 
 
 
@@ -145,83 +151,84 @@
             var win = $('#playerwin').val().trim();
             var goal = $('#playergoal').val().trim();
             var min = $('#playertime').val().trim();
-            
+
             var to = contractAddress;
-            var value = 0;// need to change
+            var value = 0; // need to change
             var callFunction = "updatePlayerStatus";
-            var callArgs = "[\"" + id + "\"," + "\""+min +"\"," + "\""+win+"\"," + "\""+goal+"\"]"
-            serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
-                listener: updateListener,        //设置listener, 处理交易返回信息
+            var callArgs = "[\"" + id + "\"," + "\"" + min + "\"," + "\"" + win + "\"," + "\"" + goal + "\"]"
+            serialNumber = nebPay.call(to, value, callFunction, callArgs, { //使用nebpay的call接口去调用合约,
+                listener: updateListener, //设置listener, 处理交易返回信息
             });
         }
 
-                var txhash;
+        var txhash;
 
-                function updateListener(resp) {
-                    txhash = resp.txhash;
-                    neb.api.getTransactionReceipt({
-                        hash: resp.txhash
-                    })
-                        .then(function (receipt) {
-                            console.log("receipt is:" + JSON.stringify(receipt))
-                            setQuery = setInterval(function () {
-                                setTxQuery();
-                            }, 10000);
-                        })
-                }
+        function updateListener(resp) {
+            txhash = resp.txhash;
+            neb.api.getTransactionReceipt({
+                    hash: resp.txhash
+                })
+                .then(function (receipt) {
+                    console.log("receipt is:" + JSON.stringify(receipt))
+                    setQuery = setInterval(function () {
+                        setTxQuery();
+                    }, 10000);
+                })
+        }
 
-                function setTxQuery() {
-                neb.api.getTransactionReceipt({
+        function setTxQuery() {
+            neb.api.getTransactionReceipt({
                     hash: txhash
                 })
-                    .then(function (receipt) {
-                        console.log(receipt)
-                        if (receipt.status ==1){
-                            console.log("tx success")
-                            clearInterval(setQuery);
-                            getTotalToken();
-                        }
+                .then(function (receipt) {
+                    console.log(receipt)
+                    if (receipt.status == 1) {
+                        console.log("tx success")
+                        clearInterval(setQuery);
+                        getTotalToken();
+                    }
 
-                    if (receipt.status ==0){
-                            console.log("tx fail")
-                            clearInterval(setQuery);
-                        }
-                        
-                    })
-                    .catch(function (err) {
-                        console.log("didn't get a receipt")
-                    })
+                    if (receipt.status == 0) {
+                        console.log("tx fail")
+                        clearInterval(setQuery);
+                    }
+
+                })
+                .catch(function (err) {
+                    console.log("didn't get a receipt")
+                })
+        }
+
+
+
+
+        function showStars(number) {
+            return "stars-container stars-" + number;
+        }
+
+
+
+        var database;
+
+        function init() {
+            console.log("in the initial function");
+            $.getJSON('../players.json', function (data) {
+                database = data;
+
+            }).then(
+                function () {
+                    getTotalToken();
                 }
+            )
 
-        
-  
-
-function showStars(number){
-    return "stars-container stars-"+number;
-}
-
-
-
-    var database;
-    function init(){
-        console.log("in the initial function");
-        $.getJSON('../players.json', function (data) {
-            database = data;
-
-        }).then(
-            function (){
-                getTotalToken();
-            }
-        )
-        
-        window.addEventListener('message', networkUpdate); 
+            window.addEventListener('message', networkUpdate);
             updateStatus();
-            setInterval(updateStatus,50000);
-        
-    }
+            setInterval(updateStatus, 50000);
+
+        }
 
 
-    function getTotalToken(){
+        function getTotalToken() {
             var testcontract;
             var callJSONs = {
                 from: ownerAddress, // get address string
@@ -233,74 +240,79 @@ function showStars(number){
                 contract: testcontract
             }
             // get the token Id owned by the address
-            testcontract = { "function": "getTotalTokens", "args": "" };
+            testcontract = {
+                "function": "getTotalTokens",
+                "args": ""
+            };
             callJSONs.contract = testcontract;
             neb.api.call(callJSONs).
-            then(function (resp){
+            then(function (resp) {
                 $("#totalTokens").show().text("Total tokens:  " + resp.result);
-                return resp.result; 
-              } 
-            ).then(function(resp){
-                var N = resp; 
+                return resp.result;
+            }).then(function (resp) {
+                var N = resp;
                 var IDs = [];
-                for(var i=0;i<N;i++){
+                for (var i = 0; i < N; i++) {
                     IDs.push(i);
                 }
-                console.log(IDs);        
+                console.log(IDs);
                 getTokenInfoByIds(IDs)
             })
-    }
+        }
 
 
 
-            function getTokenInfoByIds(tokenIds){
-                        var testcontract;
-                        var callJSONs = {
-                            from: ownerAddress, // get address string
-                            to: contractAddress, // get the contract string
-                            value: "0",
-                            nonce: 0,
-                            gasPrice: "200000",
-                            gasLimit: "1000000",
-                            contract: { "function": "getPlayersInfoByTokenId", "args": "[\"" + JSON.stringify(tokenIds) + "\"]" }
-                        }
-                    
-                    neb.api.call(callJSONs).then(function (resp) {
-                        
-                        playerInfo = JSON.parse(resp.result);   
-                        console.log(playerInfo);  // this should be an playerinfo array  
-                        // bubbleSort(playerInfo);// sort player Info 
-                        $("#tbody").empty();
-                        for (var i=0;i<playerInfo.length;i++){
-                            playerInfo[i].points = getPoints(playerInfo[i]);
-                        }  
-                        
-                        var sortedPlayers = bubbleSort(playerInfo);
-                        
-                        for (var i=0;i<50;i++){
-                            $('#here_table').append('<tr><th scope="row">'+i+'</th>'
-                                +'<td>'+database[sortedPlayers[i].id].name +'</td>'
-                                +'<td>'+sortedPlayers[i].owner +'</td>'
-                                +'<td>'+getPoints(sortedPlayers[i]) +'</td>'
-                                +'<td class=\"'+showStars(sortedPlayers[i].talent)+'\">'+"★★★★★"+'</td>'
-                                +'<td>'+sortedPlayers[i].time +'</td>'
-                                +'<td>'+sortedPlayers[i].win +'</td>'
-                                +'<td>'+sortedPlayers[i].goal +'</td>'+'</tr>');
-                        }
-   
-                        
-                    })
+        function getTokenInfoByIds(tokenIds) {
+            var testcontract;
+            var callJSONs = {
+                from: ownerAddress, // get address string
+                to: contractAddress, // get the contract string
+                value: "0",
+                nonce: 0,
+                gasPrice: "200000",
+                gasLimit: "1000000",
+                contract: {
+                    "function": "getPlayersInfoByTokenId",
+                    "args": "[\"" + JSON.stringify(tokenIds) + "\"]"
+                }
             }
-// $('#talent').attr('class',showStars(info[i].talent))sortedPlayers[i].talent
-                  
-                       
-        function getPoints(player){
-            return player.time*player.talent+player.goal*300+player.win*100;
-        }                
-        
+
+            neb.api.call(callJSONs).then(function (resp) {
+
+                playerInfo = JSON.parse(resp.result);
+                console.log(playerInfo); // this should be an playerinfo array  
+                // bubbleSort(playerInfo);// sort player Info 
+                $("#tbody").empty();
+                for (var i = 0; i < playerInfo.length; i++) {
+                    playerInfo[i].points = getPoints(playerInfo[i]);
+                }
+
+                var sortedPlayers = bubbleSort(playerInfo);
+
+                for (var i = 0; i < 50; i++) {
+                    $('#here_table').append('<tr><th scope="row">' + i + '</th>' +
+                        '<td>' + database[sortedPlayers[i].id].name + '</td>' +
+                        '<td>' + sortedPlayers[i].owner + '</td>' +
+                        '<td>' + getPoints(sortedPlayers[i]) + '</td>' +
+                        '<td class=\"' + showStars(sortedPlayers[i].talent) + '\">' + "★★★★★" + '</td>' +
+                        '<td>' + sortedPlayers[i].time + '</td>' +
+                        '<td>' + sortedPlayers[i].win + '</td>' +
+                        '<td>' + sortedPlayers[i].goal + '</td>' + '</tr>');
+                }
+
+
+            })
+        }
+        // $('#talent').attr('class',showStars(info[i].talent))sortedPlayers[i].talent
+
+
+        function getPoints(player) {
+            return player.time * player.talent + player.goal * 300 + player.win * 100;
+        }
+
 
         function bubbleSort(array) {
-                // array = {"tokenId":, "points":}
+            // array = {"tokenId":, "points":}
             var done = false;
             while (!done) {
                 done = true;
@@ -317,49 +329,52 @@ function showStars(number){
         }
 
 
-// check the prize pool
+        // check the prize pool
         function getTotalPrize() {
-                        var testcontract;
-                        var callJSONs = {
-                            from: ownerAddress, // get address string
-                            to: contractAddress, // get the contract string
-                            value: "0",
-                            nonce: 0,
-                            gasPrice: "200000",
-                            gasLimit: "1000000",
-                            contract: testcontract
-                        }
+            var testcontract;
+            var callJSONs = {
+                from: ownerAddress, // get address string
+                to: contractAddress, // get the contract string
+                value: "0",
+                nonce: 0,
+                gasPrice: "200000",
+                gasLimit: "1000000",
+                contract: testcontract
+            }
 
-                        // get the token Id owned by the address
-                        testcontract = { "function": "getPrizePool", "args": "" };
-                        callJSONs.contract = testcontract;
-                        neb.api.call(callJSONs)
-                        .then(function (resp){
-                            // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
-                            $("#pool").show().text(String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS in pool");
-                            }   
-                        )
-                };
+            // get the token Id owned by the address
+            testcontract = {
+                "function": "getPrizePool",
+                "args": ""
+            };
+            callJSONs.contract = testcontract;
+            neb.api.call(callJSONs)
+                .then(function (resp) {
+                    // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
+                    $("#pool").show().text(String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS in pool");
+                })
+        };
 
-        
+
         $(window).load(function () {
             // executes when complete page is fully loaded, including all frames, objects and images
-                // window.postMessage({
-                // "target": "contentscript",
-                // "data":{},
-                // "method": "getAccount",
-                // }, "*");
-     
-                // window.addEventListener('message', function(e) {
-                //     if(!!e.data.data.account){
-                //         account = e.data.data.account;
-                //     } 
-                //     // console.log(account)
-                // });  
-                
-                init();
+            // window.postMessage({
+            // "target": "contentscript",
+            // "data":{},
+            // "method": "getAccount",
+            // }, "*");
+
+            // window.addEventListener('message', function(e) {
+            //     if(!!e.data.data.account){
+            //         account = e.data.data.account;
+            //     } 
+            //     // console.log(account)
+            // });  
+
+            init();
         });
     </script>
 
 </body>
+
 </html>

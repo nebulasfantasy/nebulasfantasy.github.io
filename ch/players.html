@@ -10,24 +10,25 @@
 <link href="../css/star.css" rel="stylesheet">
 <link href="../css/NF.css" rel="stylesheet">
 <style>
-        img {
-            display:block;
-            margin:auto;
-        }
+    img {
+        display: block;
+        margin: auto;
+    }
 </style>
+
 <body>
     <div class="container">
         <div class="w3-white w3-xlarge" style="max-width:1200px;">
-                <div class="w3-bar">
-                        <a href="./index.html" class="w3-bar-item w3-button">主页</a>
-                        <a href="./players.html" class="w3-bar-item w3-button">我的球员</a>
-                        <a href="./market.html" class="w3-bar-item w3-button">市场</a>
-                        <a href="./leaderboard.html"  class="w3-bar-item w3-button">积分榜</a>
-                        <a href="./about.html"  class="w3-bar-item w3-button">介绍</a>
-                        <a href="" id="contractAddress" class="w3-bar-item w3-button">合约</a>
-                        <a href="../players.html" class="w3-bar-item w3-button" style="float:right">English</a>
-                        <!-- <span class="w3-bar-item" id="pool" style="float:right"></span> -->
-                </div>
+            <div class="w3-bar">
+                <a href="./index.html" class="w3-bar-item w3-button">主页</a>
+                <a href="./players.html" class="w3-bar-item w3-button">我的球星</a>
+                <a href="./market.html" class="w3-bar-item w3-button">购买球星</a>
+                <a href="./leaderboard.html" class="w3-bar-item w3-button">积分榜</a>
+                <a href="./about.html" class="w3-bar-item w3-button">介绍</a>
+                <a href="" id="contractAddress" class="w3-bar-item w3-button">合约</a>
+                <a href="../players.html" class="w3-bar-item w3-button" style="float:right">English</a>
+                <!-- <span class="w3-bar-item" id="pool" style="float:right"></span> -->
+            </div>
         </div>
 
         <header class="w3-display-container w3-content w3-wide" style="max-width:1600px" id="home">
@@ -36,61 +37,77 @@
             <!-- <div class="w3-display-bottomleft w3-padding-large w3-opacity">
                 <h1 class="w3-xxlarge">Le Catering</h1>
             </div> -->
-            
 
-           
+
+
         </header>
-
         <div class="infobar">
             <div class="row">
                 <div class="col-sm-4">
-                        <span class="infobaritems">Network: <span id="network"></span></span> 
-                </div>
-                <div class="col-sm-4"> 
-                        <span class="infobaritems">Prize Pool: <span id="pool"></span></span> 
+                    <span class="infobaritems">网络状况:
+                        <span id="network"></span>
+                    </span>
                 </div>
                 <div class="col-sm-4">
-                        <span class="infobaritems"># of Avatars: <span id="amountAvatars"></span></span> 
+                    <span class="infobaritems">奖池大小:
+                        <span id="pool"></span>
+                    </span>
+                </div>
+                <div class="col-sm-4">
+                    <span class="infobaritems">球星卡总数:
+                        <span id="amountAvatars"></span>
+                    </span>
                 </div>
             </div>
         </div>
 
-        
         <div class="form-group" style="display:inline-flex; float:right;width: 500px; margin:30px 30px; margin-left:auto; margin-right:auto">
-                    
-                <input class="form-control" type="text" id="address" placeholder="your NAS address">
-                <br>
-                <button id="check" class="btn btn-primary" onClick="check()" style="display: inline-block;">CHECK</button>
-                <br> 
+
+            <input class="form-control" type="text" id="address" placeholder="您的星云链地址">
+            <br>
+            <button id="check" class="btn btn-primary" onClick="check()" style="display: inline-block;">搜索</button>
+            <br>
         </div>
 
 
 
         <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
-                <div> <h3 id="title"></h3> </div>
-                <div> <h4 id="noplayer" style="display:none">请先去认领一个球员</h4> </div>
-                <div id="playersRow" class="row">
-                    <!-- PETS LOAD HERE -->
+            <div>
+                <h3 id="title"></h3>
+            </div>
+            <div>
+                <h4 id="noplayer" style="display:none">请先去认领一个球星</h4>
+            </div>
+            <div id="playersRow" class="row">
+                <!-- PETS LOAD HERE -->
             </div>
             <div id="playersTemplate" style="display: none;">
                 <div class="col-sm-6 col-md-4 col-lg-3">
                     <div class="panel panel-default panel-pet">
-                    <div class="panel-heading">
-                        <h3 id="name"></h3>
-                    </div>
-                    <div class="panel-body">
-                        <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" data-holder-rendered="true">
-                        <br/>
-                        <strong>Talent</strong>:    <span id="talent"  class="stars-container stars-5">★★★★★</span><br/>
-                       
-                        <strong>Play Time</strong>: <span id="playtime"></span><br/>
-                        <strong>WIN</strong>:       <span id="win"></span><br/>
-                        <strong>GOAL</strong>:      <span id="goal"></span><br/>
-                        <button class="btn btn-default" type="button" style="display:block;margin:auto" data-toggle="modal" data-target="#myModal">TRANSFER</button>
-                            
+                        <div class="panel-heading">
+                            <h3 id="name"></h3>
+                        </div>
+                        <div class="panel-body">
+                            <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" data-holder-rendered="true">
+                            <br/>
+                            <strong>天赋</strong>:
+                            <span id="talent" class="stars-container stars-5">★★★★★</span>
+                            <br/>
+
+                            <strong>比赛时间</strong>:
+                            <span id="playtime"></span>
+                            <br/>
+                            <strong>赢球</strong>:
+                            <span id="win"></span>
+                            <br/>
+                            <strong>进球</strong>:
+                            <span id="goal"></span>
+                            <br/>
+                            <button class="btn btn-default" type="button" style="display:block;margin:auto" data-toggle="modal" data-target="#myModal">交易</button>
+
                             <!-- Modal -->
-         
-                    </div>
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,47 +115,47 @@
 
 
         <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h3 class="modal-title">Nebulas 合约交互</h3>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Nebulas 合约交互</h3>
                     </div>
-                    <div class="modal-body" >
+                    <div class="modal-body">
                         <div id="modal-input">
-                            <h4>输入你要发送球员的目的地址</h4>
+                            <h4>输入你要发送球星的目的地址</h4>
                             <input class="form-control" type="text" id="toAddress" placeholder="目标NAS地址">
                         </div>
                         <div>
-                                <h4 id="modal-status"></h4>
-                                <div class="loader" style="display:hide;margin:auto"></div>
-                        </div>  
+                            <h4 id="modal-status"></h4>
+                            <div class="loader" style="display:hide;margin:auto"></div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-default" id="confirm" >Confirm</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                        <button type="button" class="btn btn-default" id="confirm">Confirm</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
 
-        <footer class="w3-container w3-padding-64 w3-center w3-large"> 
+        <footer class="w3-container w3-padding-64 w3-center w3-large">
             <p>Powered by Nebulas Fantasy Team</p>
             <p>nebulas.fantasy@gmail.com</p>
         </footer>
-<!-- End page content -->
-</div>
-<script src=../lib/jquery-3.3.1.min.js></script>
-<script src= "../bootstrap.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src=../lib/nebpay.js></script>
-<script src=../lib/nebulas.js></script>
-<script src='../address.js'></script>
+        <!-- End page content -->
+    </div>
+    <script src=../lib/jquery-3.3.1.min.js></script>
+    <script src="../bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src=../lib/nebpay.js></script>
+    <script src=../lib/nebulas.js></script>
+    <script src='../address.js'></script>
 
 
-<script>
+    <script>
         var nebulas = require("nebulas"),
-        neb = new nebulas.Neb();
+            neb = new nebulas.Neb();
         var NebPay = require("nebpay");
         var nebPay = new NebPay();
         var serialNumber;
@@ -146,33 +163,32 @@
         var account;
 
         var mainnetUrl = "https://pay.nebulas.io/api/mainnet/pay",
-        testnetUrl = "https://pay.nebulas.io/api/pay";
+            testnetUrl = "https://pay.nebulas.io/api/pay";
 
         var ownerAddress;
-        var explorerTex, explorer, chainId, callbackUrl, NebHttpRequest;    
+        var explorerTex, explorer, chainId, callbackUrl, NebHttpRequest;
 
-        if(mainnet==false){ // test net
+        if (mainnet == false) { // test net
             // const contractAddress =  require("address");//"n1wtjL3KMVNTV3gsWhJibnNMmr6HJHKwBW2";
             ownerAddress = "n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX";
             NebHttpRequest = "https://testnet.nebulas.io";
-            chainId = 1001;// test net
+            chainId = 1001; // test net
             callbackUrl = testnetUrl;
             explorerTx = "https://explorer.nebulas.io/#/testnet/tx/";
             explorer = "https://explorer.nebulas.io/#/testnet/address/";
-        }else
-        {
+        } else {
             // //main net 
             ownerAddress = "n1bveJ8tkb1DDECgHvknRFZesJqeaL2iKNt";
             NebHttpRequest = "https://mainnet.nebulas.io";
-            chainId = 1;// mainnet net
+            chainId = 1; // mainnet net
             callbackUrl = mainnetUrl;
             explorerTx = "https://explorer.nebulas.io/#/mainnet/tx/";
             explorer = "https://explorer.nebulas.io/#/mainnet/address/";
         }
 
-            neb.setRequest(new nebulas.HttpRequest(NebHttpRequest));
-            $("#contractAddress").attr('href', explorer + contractAddress).attr('target', "_blank");
-   
+        neb.setRequest(new nebulas.HttpRequest(NebHttpRequest));
+        $("#contractAddress").attr('href', explorer + contractAddress).attr('target', "_blank");
+
 
 
 
@@ -189,22 +205,22 @@
                 init();
             }
         }
-      
 
-        function init(){
-            if (account!=="undefined"){
+
+        function init() {
+            if (account !== "undefined") {
                 $('#title').hide();
-                $('#noplayer').hide(); 
+                $('#noplayer').hide();
                 loadPlayersByUser(account);
                 getTotalPrize();
             }
-            window.addEventListener('message', networkUpdate); 
+            window.addEventListener('message', networkUpdate);
             updateStatus();
-            setInterval(updateStatus,50000);
+            setInterval(updateStatus, 50000);
         }
 
 
-        var tokenIds; 
+        var tokenIds;
         var info;
         var playerInfo = [];
 
@@ -221,18 +237,20 @@
             }
 
             // get the token Id owned by the address
-            testcontract = { "function": "getPlayersByOwner", "args": "[\"" + address + "\"]" };
+            testcontract = {
+                "function": "getPlayersByOwner",
+                "args": "[\"" + address + "\"]"
+            };
             callJSONs.contract = testcontract;
             neb.api.call(callJSONs)
                 .then(
                     function (resp) {
                         tokenIds = JSON.parse(resp.result);
                         console.log(tokenIds);
-                        $("#title").show().text("找到了你拥有的"+tokenIds.length +"个球员");
-                        if (tokenIds.length==0){
+                        $("#title").show().text("找到了你拥有的" + tokenIds.length + "个球星");
+                        if (tokenIds.length == 0) {
                             $("#noplayer").show();
-                        }
-                        else {
+                        } else {
                             var testcontract;
                             var callJSONs = {
                                 from: ownerAddress, // get address string
@@ -241,209 +259,221 @@
                                 nonce: 0,
                                 gasPrice: "200000",
                                 gasLimit: "1000000",
-                                contract: { "function": "getPlayersInfoByTokenId", "args": "[\"" + JSON.stringify(tokenIds) + "\"]" }
+                                contract: {
+                                    "function": "getPlayersInfoByTokenId",
+                                    "args": "[\"" + JSON.stringify(tokenIds) + "\"]"
+                                }
                             }
                             neb.api.call(callJSONs)
-                            .then(function (resp) {
-                            console.log(resp.result);
-                            playerInfo = JSON.parse(resp.result);                
-                            })
-                            .then(function (){
-                                displayPlayerInfo(playerInfo);
-                            })
+                                .then(function (resp) {
+                                    console.log(resp.result);
+                                    playerInfo = JSON.parse(resp.result);
+                                })
+                                .then(function () {
+                                    displayPlayerInfo(playerInfo);
+                                })
                         }
                     })
                 .catch(function (err) {
                     console.log(JSON.stringify(err));
                 });
-       };
+        };
 
 
-       
-       function displayPlayerInfo(info) { // this is a normal function
+
+        function displayPlayerInfo(info) { // this is a normal function
             var playersRow = $('#playersRow');
-            var playersTemplate = $('#playersTemplate');                    
+            var playersTemplate = $('#playersTemplate');
             playersRow.empty();
-            $.getJSON('../players.json', function(data) {
-                    for (var i=0;i<info.length;i++){
-                        console.log(i)
-                        console.log("player name: " +data[(info[i].id)].name);
-                        console.log("player talent: " +info[i].talent);
-                        playersTemplate.find('#name').text(data[(info[i].id)].name);
-                        playersTemplate.find('img').attr('src', "../"+data[(info[i].id)].picture);
-                        playersTemplate.find('#talent').attr('class',showStars(info[i].talent))
-                       // $('#talent').attr('class',showStars(info[i].talent))
-                       playersTemplate.find('#goal').text(info[i].goal);
-                       playersTemplate.find('#win').text(info[i].win);
-                       playersTemplate.find('#playtime').text(info[i].time);
-                      
-                        playersTemplate.find('button').attr("id","Button"+tokenIds[i])
-                        playersRow.append(playersTemplate.html());
-                    }
+            $.getJSON('../players.json', function (data) {
+                for (var i = 0; i < info.length; i++) {
+                    console.log(i)
+                    console.log("player name: " + data[(info[i].id)].name);
+                    console.log("player talent: " + info[i].talent);
+                    playersTemplate.find('#name').text(data[(info[i].id)].name);
+                    playersTemplate.find('img').attr('src', "../" + data[(info[i].id)].picture);
+                    playersTemplate.find('#talent').attr('class', showStars(info[i].talent))
+                    // $('#talent').attr('class',showStars(info[i].talent))
+                    playersTemplate.find('#goal').text(info[i].goal);
+                    playersTemplate.find('#win').text(info[i].win);
+                    playersTemplate.find('#playtime').text(info[i].time);
+
+                    playersTemplate.find('button').attr("id", "Button" + tokenIds[i])
+                    playersRow.append(playersTemplate.html());
+                }
 
 
-                    for(var i = 0;i<tokenIds.length;i++){
-                      //  $('#Modal'+tokenIds[i]).show().text("this is modal "+i);
-                       // $('#Button'+tokenIds[i]).attr("data-target","Modal"+tokenIds[i])
-                        $('#Button'+tokenIds[i]).click({ id: tokenIds[i]},function(e) {
+                for (var i = 0; i < tokenIds.length; i++) {
+                    //  $('#Modal'+tokenIds[i]).show().text("this is modal "+i);
+                    // $('#Button'+tokenIds[i]).attr("data-target","Modal"+tokenIds[i])
+                    $('#Button' + tokenIds[i]).click({
+                        id: tokenIds[i]
+                    }, function (e) {
+                        e.preventDefault();
+                        modalOn();
+                        let temp = parseInt($(this).attr('id').substring(6));
+                        console.log("here! " + temp);
+                        var id = e.data.id;
+                        $('#confirm').click({
+                            id: id
+                        }, function (e) {
                             e.preventDefault();
-                            modalOn();
-                            let temp = parseInt($(this).attr('id').substring(6));
-                            console.log("here! "+ temp);
-                            var id = e.data.id;
-                            $('#confirm').click({ id: id},function(e){
-                                e.preventDefault();
-                                transfer(e.data.id);
-                            });
-                            // claim(temp);
-                        })
-                    }
+                            transfer(e.data.id);
+                        });
+                        // claim(temp);
+                    })
+                }
             });
-       }
+        }
 
-        
 
-        function transfer(id){
+
+        function transfer(id) {
             var address = $('#toAddress').val().trim();
             if (address.substring(0, 2) !== "n1" || address.length !== 35) {
                 alert('Check your address!')
                 return;
             }
             var to = contractAddress;
-            var value = 0;// need to change
+            var value = 0; // need to change
             var callFunction = "transfer";
-            var callArgs = "[\"" + address + "\"," + id+"]";
-            serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
-                listener: transferListener,        //设置listener, 处理交易返回信息
+            var callArgs = "[\"" + address + "\"," + id + "]";
+            serialNumber = nebPay.call(to, value, callFunction, callArgs, { //使用nebpay的call接口去调用合约,
+                listener: transferListener, //设置listener, 处理交易返回信息
             });
         }
 
 
-            var txhash;
-            function transferListener(resp) {
-                txhash = resp.txhash;
-                neb.api.getTransactionReceipt({
+        var txhash;
+
+        function transferListener(resp) {
+            txhash = resp.txhash;
+            neb.api.getTransactionReceipt({
                     hash: resp.txhash
                 })
-                    .then(function (receipt) {
-                        spinOn();
-                        console.log("receipt is:" + JSON.stringify(receipt))
-                        setQuery = setInterval(function () {
-                            setTxQuery();
-                        }, 10000);
-                    })
-            }
-                function setTxQuery() {
-                neb.api.getTransactionReceipt({
+                .then(function (receipt) {
+                    spinOn();
+                    console.log("receipt is:" + JSON.stringify(receipt))
+                    setQuery = setInterval(function () {
+                        setTxQuery();
+                    }, 10000);
+                })
+        }
+
+        function setTxQuery() {
+            neb.api.getTransactionReceipt({
                     hash: txhash
                 })
-                    .then(function (receipt) {
-                        console.log(receipt)
-                        if (receipt.status ==1){
-                            console.log("tx success")
-                            clearInterval(setQuery);
-                            init();
-                            spinOff();
-                            $("#modal-status").text('你成功地把球员转移到了目的地址!')
-                        }
-                        if (receipt.status ==0){
-                            console.log("tx fail")
-                            spinOff();
-                            clearInterval(setQuery);
-                            $("#modal-status").text("对不起, 和智能合约的交互失败了")
-                        }
-                    })
-                    .catch(function (err) {
-                        console.log("didn't get a receipt")
-                    })
-            }
+                .then(function (receipt) {
+                    console.log(receipt)
+                    if (receipt.status == 1) {
+                        console.log("tx success")
+                        clearInterval(setQuery);
+                        init();
+                        spinOff();
+                        $("#modal-status").text('你成功地把球星转移到了目的地址!')
+                    }
+                    if (receipt.status == 0) {
+                        console.log("tx fail")
+                        spinOff();
+                        clearInterval(setQuery);
+                        $("#modal-status").text("对不起, 和智能合约的交互失败了")
+                    }
+                })
+                .catch(function (err) {
+                    console.log("didn't get a receipt")
+                })
+        }
 
         // check the prize pool
         function getTotalPrize() {
-                var testcontract;
-                var callJSONs = {
-                    from: ownerAddress, // get address string
-                    to: contractAddress, // get the contract string
-                    value: "0",
-                    nonce: 0,
-                    gasPrice: "200000",
-                    gasLimit: "1000000",
-                    contract: testcontract
-                }
+            var testcontract;
+            var callJSONs = {
+                from: ownerAddress, // get address string
+                to: contractAddress, // get the contract string
+                value: "0",
+                nonce: 0,
+                gasPrice: "200000",
+                gasLimit: "1000000",
+                contract: testcontract
+            }
 
-                // get the token Id owned by the address
-                testcontract = { "function": "getPrizePool", "args": "" };
-                callJSONs.contract = testcontract;
-                neb.api.call(callJSONs)
-                .then(function (resp){
+            // get the token Id owned by the address
+            testcontract = {
+                "function": "getPrizePool",
+                "args": ""
+            };
+            callJSONs.contract = testcontract;
+            neb.api.call(callJSONs)
+                .then(function (resp) {
                     // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
                     $("#pool").show().text(String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS in pool");
-                    }   
-                )
+                })
         };
 
 
 
 
 
-        function modalOn(){
+        function modalOn() {
             console.log('in modal On')
             $("#modal-status").hide();
-            $("#toAddress").attr("placeholder","目的NAS地址");
+            $("#toAddress").attr("placeholder", "目的NAS地址");
             $("#modal-input").show();
             $("#confirm").show();
         }
 
         function spinOn() {
-            $(".loader").css("display","block");
+            $(".loader").css("display", "block");
             $("#modal-input").hide();
             $("#modal-status").show().text("与智能合约交互中...请等待");
             $("#confirm").hide();
-           
+
             // $("#claimButton").hide();
         }
 
         function spinOff() {
-            $(".loader").css("display","none");
+            $(".loader").css("display", "none");
             // $("#claimButton").show();
         }
-        
+
         $(window).load(function () {
             // executes before complete page is fully loaded, including all frames, objects and images
-                var counter = 3;
+            var counter = 3;
 
-                var getAccount = function (e) {
-                    e.preventDefault();
-                    if(!!e.data.data.account){
-                        account = e.data.data.account;
-                        console.log(account)
-                        window.removeEventListener("message", getAccount, false);
+            var getAccount = function (e) {
+                e.preventDefault();
+                if (!!e.data.data.account) {
+                    account = e.data.data.account;
+                    console.log(account)
+                    window.removeEventListener("message", getAccount, false);
+                    init();
+                } // console.log(account)
+                else {
+                    if (counter > 0) {
+                        counter--;
+                    } else {
+                        console.log('did not find the account')
                         init();
-                    } // console.log(account)
-                    else{
-                        if(counter>0){
-                            counter--;
-                        }else{
-                            console.log('did not find the account')
-                            init();
-                        }
-                        
                     }
-                };
-              
-                window.addEventListener('message', getAccount); 
 
-               
-                    window.postMessage({
-                        "target": "contentscript",
-                        "data":{},
-                        "method": "getAccount",
-                        }, "*");     
-                   
-   
-            
+                }
+            };
+
+            window.addEventListener('message', getAccount);
+
+
+            window.postMessage({
+                "target": "contentscript",
+                "data": {},
+                "method": "getAccount",
+            }, "*");
+
+
+
         });
     </script>
 
 </body>
+
 </html>
