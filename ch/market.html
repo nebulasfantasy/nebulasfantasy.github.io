@@ -308,6 +308,13 @@
                             claim(temp);
                         })
                     }
+
+                    // load a new player image
+                    playersTemplate.find('#name').text("没有找到?");
+                    playersTemplate.find('img').attr('src', "../img/default card.png");
+                    playersTemplate.find('button').hide();
+                    playersTemplate.find('#price').text("让我们为你定做！")
+                    playersRow.append(playersTemplate.html());
             });
             
         }

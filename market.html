@@ -171,9 +171,6 @@
             $("#contractAddress").attr('href', explorer + contractAddress).attr('target', "_blank");
    
 
-
-
-
                 function claim(id){
                         var testcontract;
                         var callJSONs = {
@@ -305,13 +302,21 @@
                     for(var i = 0;i<totalPlayer;i++){
                         $('#Button'+i).click(function() {
                             let temp = parseInt($(this).attr('id').substring(6));
-                            console.log("here! "+ temp);
                             claim(temp);
                         })
                     }
-            });
-            
+
+                    // load a new player image
+                    playersTemplate.find('#name').text("can't find yr avatar?");
+                    playersTemplate.find('img').attr('src', "./img/default card.png");
+                    playersTemplate.find('button').hide();
+                    playersTemplate.find('#price').text("Let us make it for you!!!")
+                    playersRow.append(playersTemplate.html());
+
+            });   
         }
+
+       
 
 
 
