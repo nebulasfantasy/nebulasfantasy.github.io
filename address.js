@@ -4,7 +4,7 @@
 
 
 
-// const contractAddress = "n1euf1q5Ptf8VxQh2LMJZvSLs4gT6QR29Lx";//74590f054cec9821b7db249fac4b2a5ada63169a814c55dcb6aa100095277b29
+// const contractAddress = "c";//74590f054cec9821b7db249fac4b2a5ada63169a814c55dcb6aa100095277b29
 // const mainnet = true;
 
 // after updates 06/13/2018
@@ -113,9 +113,6 @@ var networkUpdate = function(e){
     }
 }
 
-function showStars(number){
-    return "stars-container stars-"+number;
-}
 
 
 function updateStatus() {
