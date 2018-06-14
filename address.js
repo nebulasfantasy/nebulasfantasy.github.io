@@ -113,6 +113,10 @@ var networkUpdate = function(e){
     }
 }
 
+function showStars(number){
+    return "stars-container stars-"+number;
+}
+
 
 function updateStatus() {
     // post info
@@ -127,6 +131,3 @@ function updateStatus() {
 }
 
 
-function showStars(number){
-    return "stars-container stars-"+number;
-}
