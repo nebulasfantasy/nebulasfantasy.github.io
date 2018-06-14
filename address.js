@@ -125,3 +125,8 @@ function updateStatus() {
     getTotalTokens();
     getTotalPrize();
 }
+
+
+function showStars(number){
+    return "stars-container stars-"+number;
+}
