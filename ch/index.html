@@ -62,9 +62,9 @@
         <div class="w3-white w3-xlarge" style="max-width:1200px;">
             <div class="w3-bar">
                 <a href="./index.html" class="w3-bar-item w3-button">主页</a>
-                <a href="./players.html" class="w3-bar-item w3-button">我的球员</a>
+                <a href="./players.html" class="w3-bar-item w3-button">我的球星卡</a>
                 <a href="./market.html" class="w3-bar-item w3-button">市场</a>
-                <a href="./leaderboard.html"  class="w3-bar-item w3-button">积分榜</a>
+                <a href="./leaderboard.html" class="w3-bar-item w3-button">积分榜</a>
                 <a href="./about.html" class="w3-bar-item w3-button">介绍</a>
                 <a href="" id="contractAddress" class="w3-bar-item w3-button">合约</a>
                 <a href="../index.html" class="w3-bar-item w3-button" style="float:right">English</a>
@@ -78,13 +78,19 @@
         <div class="infobar">
             <div class="row">
                 <div class="col-sm-4">
-                        <span class="infobaritems">Network: <span id="network"></span></span> 
-                </div>
-                <div class="col-sm-4"> 
-                        <span class="infobaritems">Prize Pool: <span id="pool"></span></span> 
+                    <span class="infobaritems">网络状况:
+                        <span id="network"></span>
+                    </span>
                 </div>
                 <div class="col-sm-4">
-                        <span class="infobaritems"># of Avatars: <span id="amountAvatars"></span></span> 
+                    <span class="infobaritems">奖池大小:
+                        <span id="pool"></span>
+                    </span>
+                </div>
+                <div class="col-sm-4">
+                    <span class="infobaritems">球星卡总数:
+                        <span id="amountAvatars"></span>
+                    </span>
                 </div>
             </div>
         </div>
@@ -93,30 +99,34 @@
         <div style="max-width:2000px;margin-top:50px">
             <div class="row">
                 <div class="col-sm-7">
-                    <h2 class="sectionTitle">球员彩票</h2>
+                    <h2 class="sectionTitle">抽取球星卡</h2>
                     <div class="buyPlayer">
-                            <img class="img-center" id="randomPlayerCard" style="width:90%; height:90%;" src="../img/lottery_quesitonMark.png">
-                            <!-- <div style="margin:5px; color:red;text-align: center"> <h4>抽卡功能维护中.. 请前往<a href=""./market.html"">市场</a>购买球员 </h4> </div>
+                        <img class="img-center" id="randomPlayerCard" style="width:90%; height:90%;" src="../img/lottery_quesitonMark.png">
+                        <!-- <div style="margin:5px; color:red;text-align: center"> <h4>抽卡功能维护中.. 请前往<a href=""./market.html"">市场</a>购买球星卡 </h4> </div>
                       -->
-                            <button id="claimButton" type="button" class="btn btn-primary" style="display: block; margin: 20px auto;">
-                            开始
-                            </button>
+                        <button id="claimButton" type="button" class="btn btn-primary" style="display: block; margin: 20px auto;">
+                            试试手气
+                        </button>
                     </div>
                     <h4 style="text-align: center" id="currentPrice"></h4>
                 </div>
                 <div class="col-sm-5">
-                    <h2 class="sectionTitle">什么是 Nebulas Fantasy 球员?</h2>
+                    <h2 class="sectionTitle">什么是 Nebulas Fantasy 球星卡?</h2>
                     <div class="board" style="margin-right:20px;text-align: justify">
                         <h4>
                             <br>
                             <ul>
-                                <li>每个球员都是一个星云链上的独立的NRC721 Token</li>
-                                <li>每个球员诞生时将被赋予(1-5)的天赋值</li>
-                                <li>每个球员将根据实际比赛中的表现获得相应积分</li>
-                                <li>每通过抽奖方式产生50位球员,抽奖的成本将提高0.1NAS</li>
-                                <li>抽奖的花费会自动进入奖池</li>
-                                <li>想要一个特定的球员?来
-                                    <a href="./market.html" target="_blank">球员市场</a> 看看</li>
+                                <li>每个球星卡都是一个星云链上的独立的NRC721 Token</li>
+                                <li>您可以通过三种方式来获取球星卡：</li>
+                                <li>1.抽取模式：花费较少，但球星随机，能力值随机</li>
+                                <li>2.购买模式：花费中等，但可直选球星，能力值随机，点击进入
+                                    <a href="./market.html" target="_blank">购买球星</a>
+                                </li>
+                                <li>3.自由市场(开发中)：向其他玩家购买其拥有的球星卡，在购买前，您可以看到该球星卡的能力值</li>
+                                <li>每个球星卡的天赋值在(1-5)之间</li>
+                                <li>每个球星卡将根据该球星在实际比赛中的表现获得相应积分</li>
+                                <li>每通过抽取方式产生50位球星卡,抽取的成本将提高0.1NAS</li>
+                                <li>抽取的花费会自动进入奖池</li>
                                 <li>你需要一个
                                     <a href="https://chrome.google.com/webstore/detail/nasextwallet/gehjkhmhclgnkkhpfamakecfgakkfkco" target="_blank">星云链钱包</a>
                                 </li>
@@ -171,18 +181,18 @@
 
                     <img class="img-center" src="../img/home/create.png">
                     <br/>
-                    <h3 class="howtoplay">获得球员</h4>
+                    <h3 class="howtoplay">获得球星卡</h4>
                 </div>
                 <div class="col-md-4">
 
                     <img class="img-center" src="../img/home/game.png">
                     <br/>
-                    <h3 class="howtoplay">获得积分</h4>
+                    <h3 class="howtoplay">积累比赛积分</h4>
                 </div>
                 <div class="col-md-4">
                     <img class="img-center" src="../img/home/win.png">
                     <br/>
-                    <h3 class="howtoplay">获得奖励</h4>
+                    <h3 class="howtoplay">分享抽卡奖池</h4>
                 </div>
             </div>
         </div>
@@ -206,7 +216,6 @@
     <script src=../address.js></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
-
         var nebulas = require("nebulas"),
             neb = new nebulas.Neb();
         var NebPay = require("nebpay");
@@ -226,7 +235,7 @@
             // const contractAddress =  require("address");//"n1wtjL3KMVNTV3gsWhJibnNMmr6HJHKwBW2";
             ownerAddress = "n1RQYWMLqy1twJhfYxPk4SFx7wdfeq31pMX";
             NebHttpRequest = "https://testnet.nebulas.io";
-            chainId = 1001;// test net
+            chainId = 1001; // test net
             callbackUrl = testnetUrl;
             explorerTx = "https://explorer.nebulas.io/#/testnet/tx/";
             explorer = "https://explorer.nebulas.io/#/testnet/address/";
@@ -234,7 +243,7 @@
             // //main net 
             ownerAddress = "n1bveJ8tkb1DDECgHvknRFZesJqeaL2iKNt";
             NebHttpRequest = "https://mainnet.nebulas.io";
-            chainId = 1;// mainnet net
+            chainId = 1; // mainnet net
             callbackUrl = mainnetUrl;
             explorerTx = "https://explorer.nebulas.io/#/mainnet/tx/";
             explorer = "https://explorer.nebulas.io/#/mainnet/address/";
@@ -245,7 +254,7 @@
 
 
         function init() {
-            window.addEventListener('message', networkUpdate); 
+            window.addEventListener('message', networkUpdate);
 
             var claim = $('#claimButton');
             claim.click(function (e) {
@@ -254,7 +263,7 @@
             });
 
             updateStatus();
-            setInterval(updateStatus,10000);
+            setInterval(updateStatus, 10000);
             getCurrentPrice();
         };
 
@@ -273,18 +282,20 @@
             }
 
             // get the token Id owned by the address
-            testcontract = { "function": "getDrawPrice", "args": "" };
+            testcontract = {
+                "function": "getDrawPrice",
+                "args": ""
+            };
             callJSONs.contract = testcontract;
             neb.api.call(callJSONs)
                 .then(function (resp) {
                     console.log(resp)
                     // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
                     $("#currentPrice").show().text("当前价格: " + String(parseFloat(JSON.parse(resp.result))) + " NAS");
-                }
-                )
+                })
         }
 
-       
+
         function buy() {
             // read the price first
             var testcontract;
@@ -299,21 +310,23 @@
             }
 
             // get the token Id owned by the address
-            testcontract = { "function": "getDrawPrice", "args": "" };
+            testcontract = {
+                "function": "getDrawPrice",
+                "args": ""
+            };
             callJSONs.contract = testcontract;
             neb.api.call(callJSONs)
                 .then(function (resp) {
                     var to = contractAddress;
-                    var value = parseFloat(JSON.parse(resp.result));// need to change
+                    var value = parseFloat(JSON.parse(resp.result)); // need to change
                     var callFunction = "mint";
                     var callArgs = "";
                     console.log(value)
-                    serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
-                        listener: mintListener,        //设置listener, 处理交易返回信息
+                    serialNumber = nebPay.call(to, value, callFunction, callArgs, { //使用nebpay的call接口去调用合约,
+                        listener: mintListener, //设置listener, 处理交易返回信息
                     });
 
-                }
-                )
+                })
 
         }
 
@@ -322,8 +335,8 @@
         function mintListener(resp) {
             txhash = resp.txhash;
             neb.api.getTransactionReceipt({
-                hash: resp.txhash
-            })
+                    hash: resp.txhash
+                })
                 .then(function (receipt) {
                     spinOn();
                     var playerCard = $('#randomPlayerCard');
@@ -337,8 +350,8 @@
 
         function setTxQuery() {
             neb.api.getTransactionReceipt({
-                hash: txhash
-            })
+                    hash: txhash
+                })
                 .then(function (receipt) {
                     console.log(receipt)
                     if (receipt.status == 1) {
@@ -407,7 +420,6 @@
             // executes when complete page is fully loaded, including all frames, objects and images
             init();
         });
-
     </script>
 
 </body>
