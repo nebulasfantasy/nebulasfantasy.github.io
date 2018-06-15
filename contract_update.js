@@ -351,14 +351,11 @@ Players.prototype = {
         if(Blockchain.transaction.from!==this.owner){
             throw new Error("you are not game owner")
         }
-        
-
-        // initialze new player price
+           // initialze new player price
         for (var i=0;i<addition;i++){
             this.playerPrice.set((this.totalPlayers+i),new BigNumber(0.2))
         }
         this.totalPlayers = this.totalPlayers + addition;   
-
     },
 
     // return an array of tokensIDs by PlayerId;
