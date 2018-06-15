@@ -48,12 +48,12 @@ body,
 
     @media screen and (max-width: 700px) {
         .w3-bar-item, .infobaritems {
-          font-size: 9px;
+          font-size: 8px;
         }
       }
 
       @media screen and (max-width: 500px) {
         .w3-bar-item, .infobaritems {
-          font-size: 7px;
+          font-size: 6px;
         }
       }
