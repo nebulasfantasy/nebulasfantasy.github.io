@@ -77,7 +77,7 @@
                     <div class="panel-body">
                         <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
                         <br/>
-                        <strong>Talent</strong>:    <span id="talent"  class="stars-container stars-5">★★★★★</span><br/>
+                        <strong>Talent</strong>:    <span id="talent"  class="stars-container stars-1">★★★★★</span><br/>
                        
                         <strong>Play Time</strong>: <span id="playtime"></span><br/>
                         <strong>WIN</strong>:       <span id="win"></span><br/>
@@ -264,8 +264,8 @@
                         console.log("player talent: " +info[i].talent);
                         playersTemplate.find('#name').text(data[(info[i].id)].name);
                         playersTemplate.find('img').attr('src', data[(info[i].id)].picture);
-                        playersTemplate.find('#talent').attr('class',showStars(info[i].talent))
-                       // $('#talent').attr('class',showStars(info[i].talent))
+                        // playersTemplate.find('#talent').attr('class',showStars(info[i].talent))
+                       $('#talent').attr('class',showStars(info[i].talent))
                        playersTemplate.find('#goal').text(info[i].goal);
                        playersTemplate.find('#win').text(info[i].win);
                        playersTemplate.find('#playtime').text(info[i].time);
