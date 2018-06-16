@@ -296,20 +296,20 @@
 
         
 
-        function transfer(id){
-            var address = $('#toAddress').val().trim();
-            if (address.substring(0, 2) !== "n1" || address.length !== 35) {
-                alert('Check your address!')
-                return;
+            function transfer(id){
+                var address = $('#toAddress').val().trim();
+                if (address.substring(0, 2) !== "n1" || address.length !== 35) {
+                    alert('Check your address!')
+                    return;
+                }
+                var to = contractAddress;
+                var value = 0;// need to change
+                var callFunction = "transfer";
+                var callArgs = "[\"" + address + "\"," + id+"]";
+                serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
+                    listener: transferListener,        //设置listener, 处理交易返回信息
+                });
             }
-            var to = contractAddress;
-            var value = 0;// need to change
-            var callFunction = "transfer";
-            var callArgs = "[\"" + address + "\"," + id+"]";
-            serialNumber = nebPay.call(to, value, callFunction, callArgs, {    //使用nebpay的call接口去调用合约,
-                listener: transferListener,        //设置listener, 处理交易返回信息
-            });
-        }
 
 
             var txhash;
