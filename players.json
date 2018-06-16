@@ -138,5 +138,25 @@
         "id": 27,
         "name": "Alvaro Morata",
         "picture": "img/27.png"
+    },
+    {
+        "id": 28,
+        "name": "Christian Eriksen",
+        "picture": "img/28.png"
+    },
+    {
+        "id": 29,
+        "name": "Gonzalo Higuain",
+        "picture": "img/29.png"
+    },
+    {
+        "id": 30,
+        "name": "Javior Mascherano",
+        "picture": "img/30.png"
+    },
+    {
+        "id": 31,
+        "name": "Mario Mandzukic",
+        "picture": "img/31.png"
     }
 ]
