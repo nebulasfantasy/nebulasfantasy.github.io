@@ -264,8 +264,8 @@
                         console.log("player talent: " +info[i].talent);
                         playersTemplate.find('#name').text(data[(info[i].id)].name);
                         playersTemplate.find('img').attr('src', data[(info[i].id)].picture);
-                        // playersTemplate.find('#talent').attr('class',showStars(info[i].talent))
-                       $('#talent').attr('class',showStars(info[i].talent))
+                      playersTemplate.find('#talent').attr('class',showStars(info[i].talent))
+                       //$('#talent').attr('class',showStars(info[i].talent))
                        playersTemplate.find('#goal').text(info[i].goal);
                        playersTemplate.find('#win').text(info[i].win);
                        playersTemplate.find('#playtime').text(info[i].time);
