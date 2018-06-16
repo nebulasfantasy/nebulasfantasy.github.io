@@ -1,6 +1,6 @@
 .stars-container {
   position: relative;
-  display: inline-block;
+  display: block;
   color: transparent;
   font-size:12pt;
 }
@@ -27,4 +27,4 @@
 .stars-2:after { width: 40%; }
 .stars-3:after { width: 60%; }
 .stars-4:after { width: 80%; }
-.stars-5:after { width: 100; }
+.stars-5:after { width: 100%; }
