@@ -158,5 +158,20 @@
         "id": 31,
         "name": "Mario Mandzukic",
         "picture": "img/31.png"
+    },
+    {
+        "id": 32,
+        "name": "Granit Xhaka",
+        "picture": "img/32.png"
+    },
+    {
+        "id": 33,
+        "name": "Jamie Vardy",
+        "picture": "img/33.png"
+    },
+    {
+        "id": 34,
+        "name": "Son Heung-min",
+        "picture": "img/34.png"
     }
 ]
