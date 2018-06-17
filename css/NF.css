@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather');
+
 
 body,
     h1,
@@ -7,7 +7,7 @@ body,
     h4,
     h5,
     h6 {
-        font-family: Arial,'Merriweather', sans-serif, Helvetica
+        font-family: Arial, sans-serif, Helvetica
     }
 
     .w3-bar-block .w3-bar-item {
