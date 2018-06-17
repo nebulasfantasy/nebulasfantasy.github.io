@@ -173,5 +173,15 @@
         "id": 34,
         "name": "Son Heung-min",
         "picture": "http://pagzdp556.bkt.clouddn.com/34.png"
+    },
+    {
+        "id": 35,
+        "name": "Philippe Coutinho",
+        "picture": "./img/35.png"
+    },
+    {
+        "id": 36,
+        "name": "Roberto Firmino",
+        "picture": "./img/36.png"
     }
 ]
