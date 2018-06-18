@@ -2,10 +2,9 @@
 // const contractAddress = "n1rGXEVgbRr1gkNvWk6jED8QBvfosBahFrH";// test net after update, data upload
 // const mainnet = false;
 
-
-
 // const contractAddress = "c";//74590f054cec9821b7db249fac4b2a5ada63169a814c55dcb6aa100095277b29
 // const mainnet = true;
+
 
 // after updates 06/13/2018
 const contractAddress = "n1kjf1jqAhxVWpP5QYWWw2NfonwfgSWV9ZZ";//408e13fd9cc9d10f975e88a8dccf48471c0cd1fdf644298b1c392c59cd67c6fe

@@ -248,7 +248,7 @@
                         console.log(result.playerId)
                         clearInterval(setQuery);
                         spinOff();
-                        $.getJSON('../players.json', function (data) {
+                        $.getJSON('players.json', function (data) {
                             $("#modal-status").show().text("你刚刚成功获得了 " + data[result.playerId].name)
                             $("#talent").attr('class', showStars(result.talent))
                             $("#modal-txresult").show();
@@ -301,14 +301,14 @@
         var priceLocation;
 
         function loadAllPlayers() {
-            $.getJSON('../players.json', function (data) {
+            $.getJSON('players.json', function (data) {
                 var playersRow = $('#playersRow');
                 var playersTemplate = $('#playersTemplate');
                 playersRow.empty();
                 totalPlayer = data.length;
                 for (var i = 0; i < data.length; i++) {
                     playersTemplate.find('#name').text(data[i].name);
-                    playersTemplate.find('img').attr('src', "../" + data[i].picture);
+                    playersTemplate.find('img').attr('src', data[i].picture);
                     playersTemplate.find('button').attr("id", "Button" + i);
                     playersTemplate.find('#price').text("price: " + playerPrice[i] + " NAS");
                     playersRow.append(playersTemplate.html());

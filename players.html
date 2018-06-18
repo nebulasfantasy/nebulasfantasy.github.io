@@ -81,6 +81,7 @@
                         <strong>Play Time</strong>: <span id="playtime"></span><br/>
                         <strong>WIN</strong>:       <span id="win"></span><br/>
                         <strong>GOAL</strong>:      <span id="goal"></span><br/>
+                        <strong>POINT</strong>:      <span id="point"></span><br/>
                         <button class="btn btn-default" type="button" style="display:block;margin:auto" data-toggle="modal" data-target="#myModal">TRANSFER</button>
                         <!-- <button class="btn btn-default" type="button" style="display:inline-block;margin:auto">TRADE</button>   -->
                             <!-- Modal -->
@@ -268,6 +269,8 @@
                        playersTemplate.find('#goal').text(info[i].goal);
                        playersTemplate.find('#win').text(info[i].win);
                        playersTemplate.find('#playtime').text(info[i].time);
+                       playersTemplate.find('#point').text(getPoints(info[i]));
+                       
                       
                         playersTemplate.find('button').attr("id","Button"+tokenIds[i])
                         playersRow.append(playersTemplate.html());
@@ -352,6 +355,9 @@
 
       
 
+        function getPoints(player){
+            return player.time*player.talent+player.goal*300+player.win*100;
+        }   
 
         function showStars(number){
             return "stars-container stars-"+number;

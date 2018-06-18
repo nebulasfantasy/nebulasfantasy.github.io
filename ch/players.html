@@ -93,7 +93,7 @@
                             <span id="talent" class="stars-container stars-5">★★★★★</span>
                             <br/>
 
-                            <strong>比赛时间</strong>:
+                            <strong>上场时间</strong>:
                             <span id="playtime"></span>
                             <br/>
                             <strong>赢球</strong>:
@@ -101,6 +101,9 @@
                             <br/>
                             <strong>进球</strong>:
                             <span id="goal"></span>
+                            <br/>
+                            <strong>得分</strong>:
+                            <span id="point"></span>
                             <br/>
                             <button class="btn btn-default" type="button" style="display:block;margin:auto" data-toggle="modal" data-target="#myModal">交易</button>
 
@@ -284,19 +287,19 @@
             var playersRow = $('#playersRow');
             var playersTemplate = $('#playersTemplate');
             playersRow.empty();
-            $.getJSON('../players.json', function (data) {
+            $.getJSON('players.json', function (data) {
                 for (var i = 0; i < info.length; i++) {
                     console.log(i)
                     console.log("player name: " + data[(info[i].id)].name);
                     console.log("player talent: " + info[i].talent);
                     playersTemplate.find('#name').text(data[(info[i].id)].name);
-                    playersTemplate.find('img').attr('src', "../" + data[(info[i].id)].picture);
+                    playersTemplate.find('img').attr('src', data[(info[i].id)].picture);
                     playersTemplate.find('#talent').attr('class', showStars(info[i].talent))
                     // $('#talent').attr('class',showStars(info[i].talent))
                     playersTemplate.find('#goal').text(info[i].goal);
                     playersTemplate.find('#win').text(info[i].win);
                     playersTemplate.find('#playtime').text(info[i].time);
-
+                    playersTemplate.find('#point').text(getPoints(info[i]));
                     playersTemplate.find('button').attr("id", "Button" + tokenIds[i])
                     playersRow.append(playersTemplate.html());
                 }
@@ -409,6 +412,12 @@
                     $("#pool").show().text(String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS in pool");
                 })
         };
+
+
+
+        function getPoints(player){
+            return player.time*player.talent+player.goal*300+player.win*100;
+        }   
 
 
         function showStars(number){
