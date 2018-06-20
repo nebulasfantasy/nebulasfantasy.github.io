@@ -163,7 +163,7 @@
 
                             </div>
 
-                            <div class="loader" style="display:hide;margin:auto"></div>
+                            <div class="loader3" style="display:hide;margin:auto"></div>
 
                         </div>
                     </div>
@@ -173,6 +173,21 @@
                 </div>
             </div>
         </div>
+
+        <!-- Chart -->
+        <div style="max-width:2000px;margin-top:50px">
+                <h2 class="sectionTitle">实时数据</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                            <div class="loader" id="loader1" style="display:hide;margin:auto"></div>
+                            <div id="talentchart" style="width: 800px; height: 500px;"></div>
+                    </div>
+                    <div class="col-md-6">
+                            <div class="loader" id="loader2" style="display:hide;margin:auto"></div>
+                            <div id="playerchart" style="width: 800px; height: 500px;"></div>  
+                    </div>
+                </div>
+            </div>
 
         <!-- About Section -->
         <div style="max-width:2000px;margin-top:50px">
@@ -209,6 +224,7 @@
 
         <!-- End page content -->
     </div>
+    <script src="../lib/chart.js"></script>
     <script src=../lib/jquery-3.3.1.min.js></script>
     <script src="../bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -256,6 +272,8 @@
 
         function init() {
             window.addEventListener('message', networkUpdate);
+            $("#loader1").css("display", "block");
+            $("#loader2").css("display", "block");
 
             var claim = $('#claimButton');
             claim.click(function (e) {
@@ -266,6 +284,9 @@
             updateStatus();
             setInterval(updateStatus, 10000);
             getCurrentPrice();
+
+
+            getTotalToken();
         };
 
 
@@ -398,17 +419,147 @@
 
         }
 
+
+        var playerInfo;
+        function getTotalToken(){
+                    var testcontract;
+                    var callJSONs = {
+                        from: ownerAddress, // get address string
+                        to: contractAddress, // get the contract string
+                        value: "0",
+                        nonce: 0,
+                        gasPrice: "200000",
+                        gasLimit: "1000000",
+                        contract: testcontract
+                    }
+                    // get the token Id owned by the address
+                    testcontract = { "function": "getTotalTokens", "args": "" };
+                    callJSONs.contract = testcontract;
+                    neb.api.call(callJSONs).
+                    then(function (resp){
+                        return resp.result; 
+                    } 
+                    ).then(function(resp){
+                        var N = resp; 
+                        var IDs = [];
+                        for(var i=0;i<N;i++){
+                            IDs.push(i);
+                        }
+                        console.log(IDs);        
+                        getTokenInfoByIds(IDs)
+                    })
+            }
+
+
+            var playersAmountData=[];
+            var playerTalents=[];
+            function getTokenInfoByIds(tokenIds){
+                        var testcontract;
+                        var callJSONs = {
+                            from: ownerAddress, // get address string
+                            to: contractAddress, // get the contract string
+                            value: "0",
+                            nonce: 0,
+                            gasPrice: "200000",
+                            gasLimit: "1000000",
+                            contract: { "function": "getPlayersInfoByTokenId", "args": "[\"" + JSON.stringify(tokenIds) + "\"]" }
+                        }
+                    
+                    neb.api.call(callJSONs).then(function (resp) {
+                        playerInfo = JSON.parse(resp.result);   
+                        console.log(playerInfo);   
+                          $.getJSON('./players.json', function (data) {
+                            playersAmountData =   [['Avatar', 'Generated Number']];
+                              for (var i=0;i<data.length;i++){
+                                var item=[data[i].name, countAmount(i)];
+                                playersAmountData.push(item);        
+                              }
+   
+
+                            google.charts.load("current", {packages:["corechart"]});
+                            google.charts.setOnLoadCallback(drawChart1);
+                            function drawChart1() {
+                                var data = google.visualization.arrayToDataTable(playersAmountData);
+
+                                var options = {
+                                title: '生成球星分布',
+                                pieHole: 0.4,
+                                };
+
+                                var chart = new google.visualization.PieChart(document.getElementById('playerchart'));
+                                chart.draw(data, options);
+                                $("#loader1").css("display", "none");
+                            }
+
+                            playerTalents =  [['Avatar', 'Talents']];
+                            for (var i=1;i<6;i++){
+                                playerTalents.push([i+"星",findStars(i)]);
+                            }
+
+                            google.charts.load("current", {packages:["corechart"]});
+                            google.charts.setOnLoadCallback(drawChart2);
+                            function drawChart2() {
+                                var data = google.visualization.arrayToDataTable(playerTalents);
+
+                                var options = {
+                                title: '生产天赋分布',
+                                pieHole: 0.4,
+                                };
+
+                                var chart = new google.visualization.PieChart(document.getElementById('talentchart'));
+                                chart.draw(data, options);
+                                $("#loader2").css("display", "none");
+                            }
+
+
+                        });
+                        // $("#tbody").empty();
+                        // for (var i=0;i<playerInfo.length;i++){
+                        //     $('#here_table').append('<tr><th scope="row">'+i+'</th>'+'<td>'+playerInfo[i].id+'</td>'
+                        //         +'<td>'+database[playerInfo[i].id].name +'</td>'
+                        //         +'<td>'+playerInfo[i].owner +'</td>'
+                        //         +'<td>'+getPoints(playerInfo[i]) +'</td>'
+                        //         +'<td>'+playerInfo[i].talent +'</td>'
+                        //         +'<td>'+playerInfo[i].time +'</td>'
+                        //         +'<td>'+playerInfo[i].win +'</td>'
+                        //         +'<td>'+playerInfo[i].goal +'</td>'+'</tr>');
+                        // }
+                    })
+            }
+
+
+            function countAmount(index){
+                var counter=0;
+                for (var i=0; i<playerInfo.length;i++){
+                    if(playerInfo[i].id==index){
+                        counter++;
+                    }
+                }
+                return counter;
+            }
+
+            function findStars(index){
+                var counter=0;
+                for (var i=0; i<playerInfo.length;i++){
+                    if(playerInfo[i].talent==index){
+                        counter++;
+                    }
+                }
+                return counter;
+            }
+
+
         function spinOn() {
             $("#myModal").modal();
             $("#modal-status").show().text("与智能合约交互中...请等待")
-            $(".loader").css("display", "block");
+            $("#loader3").css("display", "block");
             $("#confirm").hide();
             $("#modal-txresult").hide();
             $("#modal").show();
         }
 
         function spinOff() {
-            $(".loader").css("display", "none");
+            $("#loader3").css("display", "none");
             $("#confirm").show();
         }
 

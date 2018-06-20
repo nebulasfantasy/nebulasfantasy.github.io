@@ -6,7 +6,7 @@
 // const mainnet = true;
 
 
-// after updates 06/13/2018
+// // after updates 06/13/2018
 const contractAddress = "n1kjf1jqAhxVWpP5QYWWw2NfonwfgSWV9ZZ";//408e13fd9cc9d10f975e88a8dccf48471c0cd1fdf644298b1c392c59cd67c6fe
 const mainnet = true;
 

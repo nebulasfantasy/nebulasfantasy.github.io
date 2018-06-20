@@ -66,7 +66,8 @@
         <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
             <h2 class="sectionTitle">奖池领先者</h2>
             <h4>积分相同情况下先购买者优先</h4>
-            <table class="table table-striped table-hover" id="here_table">
+            <div id="table_div"></div>
+            <!-- <table class="table table-striped table-hover" id="here_table">
                 <thead>
                     <tr>
                         <th scope="col"> 排名</th>
@@ -81,7 +82,7 @@
                 </thead>
                 <tbody id="tbody">
                 </tbody>
-            </table>
+            </table> -->
         </div>
 
 
@@ -94,6 +95,7 @@
 
     <!-- End page content -->
     </div>
+    <script src="../lib/chart.js"></script>
     <script src=../lib/jquery-3.3.1.min.js></script>
     <script src="../bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -257,6 +259,9 @@
 
 
 
+            var leaderdata=[];
+            var sortedPlayers;
+
         function getTokenInfoByIds(tokenIds) {
             var testcontract;
             var callJSONs = {
@@ -277,30 +282,59 @@
                 playerInfo = JSON.parse(resp.result);
                 console.log(playerInfo); // this should be an playerinfo array  
                 // bubbleSort(playerInfo);// sort player Info 
-                $("#tbody").empty();
+                // $("#tbody").empty();
                 for (var i = 0; i < playerInfo.length; i++) {
                     playerInfo[i].points = getPoints(playerInfo[i]);
                 }
 
                 var sortedPlayers = bubbleSort(playerInfo);
+                console.log("this is" + sortedPlayers)
+                // for (var i = 0; i < 50; i++) {
+                //     $('#here_table').append('<tr><th scope="row">' + i + '</th>' +
+                //         '<td>' + database[sortedPlayers[i].id].name + '</td>' +
+                //         '<td>' + sortedPlayers[i].owner + '</td>' +
+                //         '<td>' + getPoints(sortedPlayers[i]) + '</td>' +
+                //         '<td>' + sortedPlayers[i].talent +'</td>' +
+                //         // '<td class=\"' + showStars(sortedPlayers[i].talent) + '\">' + "★★★★★" + '</td>' +
+                //         '<td>' + sortedPlayers[i].time + '</td>' +
+                //         '<td>' + sortedPlayers[i].win + '</td>' +
+                //         '<td>' + sortedPlayers[i].goal + '</td>' + '</tr>');
+                // }
 
-                for (var i = 0; i < 50; i++) {
-                    $('#here_table').append('<tr><th scope="row">' + i + '</th>' +
-                        '<td>' + database[sortedPlayers[i].id].name + '</td>' +
-                        '<td>' + sortedPlayers[i].owner + '</td>' +
-                        '<td>' + getPoints(sortedPlayers[i]) + '</td>' +
-                        '<td>' + sortedPlayers[i].talent +'</td>' +
-                        // '<td class=\"' + showStars(sortedPlayers[i].talent) + '\">' + "★★★★★" + '</td>' +
-                        '<td>' + sortedPlayers[i].time + '</td>' +
-                        '<td>' + sortedPlayers[i].win + '</td>' +
-                        '<td>' + sortedPlayers[i].goal + '</td>' + '</tr>');
-                }
+                            for (var i = 0; i < 50; i++) {
+                                    var item = [
+                                        i+1,
+                                        database[sortedPlayers[i].id].name,
+                                        sortedPlayers[i].owner,
+                                        getPoints(sortedPlayers[i]),
+                                        sortedPlayers[i].talent,
+                                        sortedPlayers[i].time,
+                                        sortedPlayers[i].win,
+                                        sortedPlayers[i].goal
+                                    ];
+                                    leaderdata.push(item);
+                                }
+                            google.charts.load('current', {'packages':['table']});
+                            google.charts.setOnLoadCallback(drawTable);
 
 
             })
         }
         // $('#talent').attr('class',showStars(info[i].talent))sortedPlayers[i].talent
-
+        function drawTable() {
+                                var data = new google.visualization.DataTable();
+                                data.addColumn('number', '排名');
+                                data.addColumn('string', '球员');
+                                data.addColumn('string', '拥有者地址');
+                                data.addColumn('number', '目前得分');
+                                data.addColumn('number', '天赋');
+                                data.addColumn('number', '上场时间');
+                                data.addColumn('number', '获胜场数');
+                                data.addColumn('number', '进球数');
+                                data.addRows(leaderdata);
+                                var table = new google.visualization.Table(document.getElementById('table_div'));
+                                table.draw(data, {width: '100%', height: '100%'});
+                            }
 
         function getPoints(player) {
             return player.time * player.talent + player.goal * 300 + player.win * 100;

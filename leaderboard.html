@@ -271,7 +271,7 @@
                         
                         console.log(playerInfo);  // this should be an playerinfo array  
                         // bubbleSort(playerInfo);// sort player Info 
-                        $("#tbody").empty();
+                        // $("#tbody").empty();
                         for (var i=0;i<playerInfo.length;i++){
                             playerInfo[i].points = getPoints(playerInfo[i]);
                         }  
@@ -309,8 +309,6 @@
                                 }
                             google.charts.load('current', {'packages':['table']});
                             google.charts.setOnLoadCallback(drawTable);
-                           
-                        
                         })
             }
                
