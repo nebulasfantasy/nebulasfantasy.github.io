@@ -210,7 +210,7 @@
         function init() {
             $("#loader1").css("display", "block");
             console.log("in the initial function");
-            $.getJSON('../players.json', function (data) {
+            $.getJSON('./players.json', function (data) {
                 database = data;
 
             }).then(
