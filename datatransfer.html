@@ -222,7 +222,7 @@
                         for(var k=1;k<csvResult.length;k++){// start from k =1 to remove header
                                 //token Id	player Id	owner	talent
                                 var temp = csvResult[k].split(/,/); // retun an array
-                                var token = {"p":temp[1],"a":temp[2],"t":temp[3]};
+                                var token = {"p":temp[1],"a":temp[2],"t":temp[3],"time":temp[4],'w':temp[5],'g':temp[6]};
                                 gData.push(token);
                         }
 
@@ -254,7 +254,7 @@
         function StringifyItem(i){
             // out put a JSON object in string
             var argstr ="{";
-            argstr = argstr+"\\\"a\\\":\\\""+gData[i].a+"\\\",\\\"t\\\":"+gData[i].t+",\\\"p\\\":"+gData[i].p;
+            argstr = argstr+"\\\"a\\\":\\\""+gData[i].a+"\\\",\\\"t\\\":"+gData[i].t+",\\\"p\\\":"+gData[i].p+",\\\"time\\\":"+gData[i].time+",\\\"w\\\":"+gData[i].w+",\\\"g\\\":"+gData[i].g;
             argstr = argstr+"}";
             console.log(argstr)
             return argstr;
