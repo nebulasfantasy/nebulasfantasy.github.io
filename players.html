@@ -61,6 +61,7 @@
         <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
                 <div> <h3 id="title"></h3> </div>
                 <div> <h4 id="noplayer" style="display:none">check your address again, or claim an avatar first</h4> </div>
+                <div class="loader" id="loader1" style="display:hide;margin:auto"></div>
                 <div id="playersRow" class="row">
                     <!-- PETS LOAD HERE -->
             </div>
@@ -103,7 +104,7 @@
                         </div>
                         <div>
                                 <h4 id="modal-status"></h4>
-                                <div class="loader" style="display:hide;margin:auto"></div>
+                                <div class="loader" id="loader2" style="display:hide;margin:auto"></div>
                         </div>  
                     </div>
                     <div class="modal-footer">
@@ -136,7 +137,7 @@
                     </div>
                     <div>
                             <h4 id="trade-modal-status"></h4>
-                            <div class="loader" style="display:hide;margin:auto"></div>
+                            <div class="loader" id="loader3" style="display:hide;margin:auto"></div>
                     </div>  
                 </div>
                 <div class="modal-footer">
@@ -218,6 +219,7 @@
         var validAuctions;
 
         function init(){
+            $("#loader1").css("display","block");
             if (account!=="undefined"){
                 $('#title').hide();
                 $('#noplayer').hide();
@@ -325,6 +327,7 @@
                         }
 
                         playersRow.append(playersTemplate.html());
+
                     }
 
                     for(var i = 0;i<tokenIds.length;i++){ // token Id is the users' owned token ID number array
@@ -381,6 +384,7 @@
                             // claim(temp);
                         })
                     }
+                    $("#loader1").css("display","none");
             });
        }
 
@@ -616,7 +620,7 @@
 
         function spinOn() {
             console.log('in spin on Transfer')
-            $(".loader").css("display","block");
+            $("#loader2").css("display","block");
             $("#modal-input").hide();
             $("#modal-status").show().text('Please wait for your transaction to be completed');
             $("#confirm").hide();
@@ -625,7 +629,8 @@
         }
 
         function spinOff() {
-            $(".loader").css("display","none");
+            $("#loader2").css("display","none");
+            $("#loader3").css("display","none");
             // $("#claimButton").show();
         }
 
@@ -642,7 +647,7 @@
 
         function spinOnTrade() {
             console.log('in spin on Trade')
-            $(".loader").css("display","block");
+            $("#loader3").css("display","block");
             $("#trade-modal-input").hide();
             $("#trade-modal-status").show().text('Please wait for your transaction to be completed');
             $("#tradeconfirm").hide();

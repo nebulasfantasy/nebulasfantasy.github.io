@@ -69,6 +69,7 @@
             <h2 class="sectionTitle">购买球星</h2>
             <!-- <h4 style="text-align: center">球员市场将在当天比赛进行期间关闭</h4> -->
             <h4 style="text-align: center">球员市场开放中</h4>
+            <div class="loader" id="loader1" style="display:hide;margin:auto"></div>
             <div id="playersRow" class="row">
             </div>
 
@@ -106,7 +107,7 @@
                                     <span id="talent" class="stars-container stars-5">★★★★★</span>
                                 </h5>
                             </div>
-                            <div class="loader" style="display:hide;margin:auto"></div>
+                            <div class="loader" id="loader2" style="display:hide;margin:auto"></div>
 
                         </div>
                     </div>
@@ -277,6 +278,7 @@
 
         function init() {
             console.log("in the initial function");
+            $("#loader1").css("display", "block");
             for (var i = 0; i < AmountOfplayers; i++) {
                 getCurrentPriceById(i);
             }
@@ -322,6 +324,8 @@
                         claim(temp);
                     })
                 }
+
+                   $("#loader1").css("display", "none");
 
                 // load a new player image
                 // playersTemplate.find('#name').text("没有找到?");
@@ -378,14 +382,14 @@
         function spinOn() {
             $("#myModal").modal();
             $("#modal-status").show().text("与智能合约交互中...请等待")
-            $(".loader").css("display", "block");
+            $("#loader2").css("display", "block");
             $("#confirm").hide();
             $("#modal-txresult").hide();
             $("#modal").show();
         }
 
         function spinOff() {
-            $(".loader").css("display", "none");
+            $("loader2").css("display", "none");
             $("#confirm").show();
         }
 

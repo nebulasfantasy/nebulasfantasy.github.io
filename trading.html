@@ -57,7 +57,8 @@
 
         <div class=class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
             <h2 class="sectionTitle">Avatar Exchange Market</h2>
-
+            <div class="loader" id="loader1" style="display:hide;margin:auto"></div>
+                
             <div id="playersRow" class="row">
             </div>
 
@@ -99,7 +100,7 @@
                         <!-- <div id="modal-txresult">
                             <h5> Talent: <span id="talent"  class="stars-container stars-5">★★★★★</span></h5>
                         </div> -->
-                        <div class="loader" style="display:hide;margin:auto"></div>
+                        <div class="loader" id="loader2" style="display:hide;margin:auto"></div>
                         
                     </div>  
                 </div>
@@ -170,7 +171,7 @@
              
         
         function init(){
-
+            $("#loader1").css("display","block");
             loadAllAuctions();
             
             window.addEventListener('message', networkUpdate); 
@@ -264,6 +265,8 @@
                             takeAuction(id,price);
                         })
                     }
+
+                    $("#loader1").css("display","none");
             });
        }
 
@@ -329,14 +332,14 @@
          function spinOn() {
             $("#myModal").modal();
             $("#modal-status").show().text("Please wait for your transaction to be completed")
-            $(".loader").css("display","block");
+            $("#loader2").css("display","block");
             $("#confirm").hide();
             $("#modal-txresult").hide();
             $("#modal").show();
         }
 
         function spinOff() {
-            $(".loader").css("display","none");
+            $("#loader2").css("display","none");
             $("#confirm").show();
         }
 
