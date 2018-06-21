@@ -386,7 +386,7 @@
                         clearInterval(setQuery);
                         spinOff();
 
-                        $.getJSON('../players.json', function (data) {
+                        $.getJSON('./players.json', function (data) {
                             $("#modal-status").show().text("你刚刚成功获得了 " + data[result.playerId].name)
                             $("#talent").attr('class', showStars(result.talent));
                             $("#modal-txresult").show();
@@ -411,7 +411,7 @@
         function loadPlayerPicsById(id) {
             // Load pets.
             console.log(id);
-            $.getJSON('../players.json', function (data) {
+            $.getJSON('./players.json', function (data) {
                 var namebar = $('#name');
                 namebar.text(data[id].name);
                 var playerCard = $('#playerCard');
