@@ -187,6 +187,6 @@
     {
         "id": 37,
         "name": "Kylian Mbappe",
-        "picture": "./img/37.png"
+        "picture": "../img/37.png"
     }
 ]
