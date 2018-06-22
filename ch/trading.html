@@ -80,6 +80,7 @@
                         <img alt="140x140" data-src="holder.js/140x140" class="img-rounded img-center" style="width: 100%;margin-bottom: 10px" src="https://animalso.com/wp-content/uploads/2017/01/Golden-Retriever_6.jpg" data-holder-rendered="true">
                         <br>
                         <strong>价格</strong>: <span id="price"></span> NAS<br/>
+                        <strong>当前排名</strong>: <span id="ranks"></span><br/>
                         <strong>出售者</strong>: <span id="seller"></span><br/>
                         <strong>上场时间</strong>: <span id="playtime" style="margin-right: 5px"></span>
                         <strong>赢球数</strong>:       <span id="win"  style="margin-right: 5px"></span>
@@ -178,6 +179,14 @@
              
         
         function init(){
+            getAllToken();
+            var rankQuery = setInterval(function(){
+                if(ranksReady==true){
+                    loadAllAuctions();
+                    clearInterval(rankQuery);
+                }
+            },500);
+
             $("#loader1").css("display","block");
             loadAllAuctions();
             
@@ -252,6 +261,7 @@
                         playersTemplate.find('#win').text(info[i].playerWin);
                         playersTemplate.find('#playtime').text(info[i].playerTime);
                         playersTemplate.find('#points').text(getPoints(info[i]));
+                        playersTemplate.find('#ranks').text(ranks[info[i].id]);
                         playersTemplate.find('button').attr("id","Button"+i);
                         // playersTemplate.find('Button').attr("id","Button"+info[i].id);// this is the auction ID, not token ID!!!
                         // playersTemplate.find('.trade').attr("id","TradeButton"+tokenIds[i])
@@ -334,9 +344,96 @@
                     })
             }
 
- // get the total token data
+// get total tokends data
+function getAllToken(){
+            var testcontract;
+            var callJSONs = {
+                from: ownerAddress, // get address string
+                to: contractAddress, // get the contract string
+                value: "0",
+                nonce: 0,
+                gasPrice: "200000",
+                gasLimit: "1000000",
+                contract: testcontract
+            }
+            // get the token Id owned by the address
+            testcontract = { "function": "getTotalTokens", "args": "" };
+            callJSONs.contract = testcontract;
+            neb.api.call(callJSONs).
+            then(function (resp){
+                $("#totalTokens").show().text("Total tokens:  " + resp.result);
+                return resp.result; 
+              } 
+            ).then(function(resp){
+                var N = resp; 
+                var IDs = [];
+                for(var i=0;i<N;i++){
+                    IDs.push(i);
+                }
+                console.log(IDs);        
+                getTokenInfoByIds(IDs)
+            })
+    }
 
+            var sortedPlayers;
+            function getTokenInfoByIds(tokenIds){
+                        var testcontract;
+                        var callJSONs = {
+                            from: ownerAddress, // get address string
+                            to: contractAddress, // get the contract string
+                            value: "0",
+                            nonce: 0,
+                            gasPrice: "200000",
+                            gasLimit: "1000000",
+                            contract: { "function": "getPlayersInfoByTokenId", "args": "[\"" + JSON.stringify(tokenIds) + "\"]" }
+                        }
+                    
+                    neb.api.call(callJSONs).then(function (resp) {
+                        playerInfo = JSON.parse(resp.result);   
+                        for (var i=0;i<playerInfo.length;i++){
+                            playerInfo[i].points = getPointsOld(playerInfo[i]);
+                            playerInfo[i].tokenId = i;
+                        }  
+                        sortedPlayers = bubbleSort(playerInfo);
+                        })
+            }
+               
 
+           
+            function bubbleSort(array) {
+                // array = {"tokenId":, "points":}
+            var done = false;
+            while (!done) {
+                done = true;
+                for (var i = 1; i < array.length; i += 1) {
+                    if (array[i - 1].points < array[i].points) {
+                        done = false;
+                        var tmp = array[i - 1];
+                        array[i - 1] = array[i];
+                        array[i] = tmp;
+                    }
+                }
+            }
+            
+            // update rank
+
+            updateRanks(array);
+            return array;
+        }
+
+            var ranks=[];
+            var ranksReady=false;
+            function updateRanks(array){
+                for (var i = 0; i < array.length; i += 1){
+                    ranks[array[i].tokenId] = i+1;
+                    
+                }
+                ranksReady = true;
+            }
+
+        function getPointsOld(player){
+            return player.time*player.talent+player.goal*300+player.win*100;
+        }   
 
 
  
