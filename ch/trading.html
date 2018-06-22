@@ -85,7 +85,7 @@
                         <strong>赢球数</strong>:       <span id="win"  style="margin-right: 5px"></span>
                         <strong>进球数</strong>:      <span id="goal"  ></span><br/>
                         <strong>天赋</strong>:    <span id="talent">★★★★★</span><br/>
-                        <!-- <strong>SCORE</strong>:      <span id="score"></span><br/> -->
+                        <strong>得分</strong>:      <span id="points"></span><br/>
                         <button class="btn btn-default" type="button" style="display:block;margin:auto">带走我~</button>
                     </div>
                     </div>
@@ -251,7 +251,7 @@
                         playersTemplate.find('#goal').text(info[i].playerGoal);
                         playersTemplate.find('#win').text(info[i].playerWin);
                         playersTemplate.find('#playtime').text(info[i].playerTime);
-                        // playersTemplate.find('#score').text(getPoints(info[i]));
+                        playersTemplate.find('#points').text(getPoints(info[i]));
                         playersTemplate.find('button').attr("id","Button"+i);
                         // playersTemplate.find('Button').attr("id","Button"+info[i].id);// this is the auction ID, not token ID!!!
                         // playersTemplate.find('.trade').attr("id","TradeButton"+tokenIds[i])

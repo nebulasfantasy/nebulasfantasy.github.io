@@ -14,9 +14,6 @@
 const contractAddress = "n1fxMEFYRTEEgNg3FeVuwByxkCpFSLmEcnF";//c0d05389a0f3afc2f4e02e657a345089d2e7cb03f41e5ae77ba79617ee28489c
 const mainnet = true;
 
-
-
-
 const AmountOfplayers = 38;
 
 // common function
