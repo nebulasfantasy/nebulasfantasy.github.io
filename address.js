@@ -16,6 +16,7 @@ const mainnet = true;
 
 const AmountOfplayers = 38;
 
+
 // common function
 
 var network;
@@ -53,7 +54,6 @@ function getTotalPrize() {
             if (data !== prizePool){
                 prizePool = data;
                 $("#pool").show().text(prizePool + " NAS");
-               
             }
             // $("#prize").show().text("Total prize pool:  " + String(parseInt(JSON.parse(resp.result)) / 1e18) + " NAS");
             
@@ -89,6 +89,8 @@ function getTotalTokens() {
          
         })
 };
+
+
 
 
 var networkUpdate = function(e){
