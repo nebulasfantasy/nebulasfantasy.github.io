@@ -281,7 +281,7 @@
             neb.api.call(callJSONs).then(function (resp) {
 
                 playerInfo = JSON.parse(resp.result);
-                console.log(playerInfo); // this should be an playerinfo array  
+               // console.log(playerInfo); // this should be an playerinfo array  
                 // bubbleSort(playerInfo);// sort player Info 
                 // $("#tbody").empty();
                 for (var i = 0; i < playerInfo.length; i++) {
@@ -289,7 +289,7 @@
                 }
 
                 var sortedPlayers = bubbleSort(playerInfo);
-                console.log("this is" + sortedPlayers)
+               // console.log("this is" + sortedPlayers)
                 // for (var i = 0; i < 50; i++) {
                 //     $('#here_table').append('<tr><th scope="row">' + i + '</th>' +
                 //         '<td>' + database[sortedPlayers[i].id].name + '</td>' +
